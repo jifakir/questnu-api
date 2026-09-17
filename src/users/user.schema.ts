@@ -38,6 +38,11 @@ export class User {
   @Prop({ trim: true })
   whatsappNumber?: string;
 
+  /** NU college code, e.g. 0101. Display fields are looked up from this code. */
+  @Prop({ trim: true })
+  collegeCode?: string;
+
+  /** Legacy free-text name. New profiles store collegeCode instead. */
   @Prop({ trim: true })
   collegeName?: string;
 

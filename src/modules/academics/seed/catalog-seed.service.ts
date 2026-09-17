@@ -25,7 +25,7 @@ export class CatalogSeedService implements OnModuleInit {
     try {
       const result = await this.syncAppCatalog();
       this.logger.log(
-        `App catalog sync: +${result.subjects.created} subjects, ${result.subjects.skipped} already present, ${result.subjects.aligned?.introductions ?? 0} introductions, ${result.subjects.labFilled ?? 0} lab intros`,
+        `App catalog sync: +${result.subjects.created} subjects, ${result.subjects.skipped} already present, ${result.subjects.aligned?.introductions ?? 0} introductions, ${result.subjects.labFilled ?? 0} lab intros, +${result.structure.colleges?.created ?? 0} colleges`,
       );
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);

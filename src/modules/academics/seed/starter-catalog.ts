@@ -12,13 +12,6 @@ export type YearSeed = {
   sortOrder: number;
 };
 
-export type CollegeSeed = {
-  slug: string;
-  name: string;
-  district: string;
-  sortOrder: number;
-};
-
 /** Mirrors the Flutter bundled seed so the admin portal can load the same starter catalog. */
 export const STARTER_DEPARTMENTS: NamedSeed[] = [
   { slug: 'accounting', name: 'Accounting', nameBn: 'হিসাববিজ্ঞান', sortOrder: 0 },
@@ -104,42 +97,4 @@ export const STARTER_YEARS: YearSeed[] = [
   { slug: '2', label: '2nd Year', labelBn: '২য় বর্ষ', sortOrder: 1 },
   { slug: '3', label: '3rd Year', labelBn: '৩য় বর্ষ', sortOrder: 2 },
   { slug: '4', label: '4th Year', labelBn: '৪র্থ বর্ষ', sortOrder: 3 },
-];
-
-export const STARTER_COLLEGES: CollegeSeed[] = [
-  { slug: 'du-aff-demo', name: 'Dhaka College', district: 'Dhaka', sortOrder: 0 },
-  { slug: 'eden', name: 'Eden Mohila College', district: 'Dhaka', sortOrder: 1 },
-  { slug: 'titumir', name: 'Government Titumir College', district: 'Dhaka', sortOrder: 2 },
-  { slug: 'kabi-nazrul', name: 'Government Kabi Nazrul College', district: 'Dhaka', sortOrder: 3 },
-  { slug: 'begum-badrunnessa', name: 'Begum Badrunnessa Government Girls’ College', district: 'Dhaka', sortOrder: 4 },
-  { slug: 'mirpur', name: 'Government Bangla College', district: 'Dhaka', sortOrder: 5 },
-  { slug: 'tejturi-bazar', name: 'Tejgaon College', district: 'Dhaka', sortOrder: 6 },
-  { slug: 'new-govt-deg', name: 'New Government Degree College', district: 'Rajshahi', sortOrder: 7 },
-  { slug: 'raj-college', name: 'Rajshahi College', district: 'Rajshahi', sortOrder: 8 },
-  { slug: 'carmichael', name: 'Carmichael College', district: 'Rangpur', sortOrder: 9 },
-  { slug: 'rangpur-govt', name: 'Rangpur Government College', district: 'Rangpur', sortOrder: 10 },
-  { slug: 'chittagong-college', name: 'Chittagong College', district: 'Chattogram', sortOrder: 11 },
-  { slug: 'govt-city-ctg', name: 'Government City College', district: 'Chattogram', sortOrder: 12 },
-  { slug: 'comilla-victoria', name: 'Comilla Victoria Government College', district: 'Cumilla', sortOrder: 13 },
-  { slug: 'brahmanbaria', name: 'Brahmanbaria Government College', district: 'Brahmanbaria', sortOrder: 14 },
-  { slug: 'mymensingh', name: 'Ananda Mohan College', district: 'Mymensingh', sortOrder: 15 },
-  { slug: 'nasirabad', name: 'Nasirabad College', district: 'Mymensingh', sortOrder: 16 },
-  { slug: 'sylhet-mc', name: 'Murari Chand College', district: 'Sylhet', sortOrder: 17 },
-  { slug: 'madan-mohan', name: 'Madan Mohan College', district: 'Sylhet', sortOrder: 18 },
-  { slug: 'khulna-govt', name: 'Government B. L. College', district: 'Khulna', sortOrder: 19 },
-  { slug: 'azam-khan', name: 'Azam Khan Government Commerce College', district: 'Khulna', sortOrder: 20 },
-  { slug: 'jessore-govt', name: 'Michael Madhusudan College', district: 'Jashore', sortOrder: 21 },
-  { slug: 'barishal-bm', name: 'Brojomohun College', district: 'Barishal', sortOrder: 22 },
-  { slug: 'barishal-govt', name: 'Government Syed Hatem Ali College', district: 'Barishal', sortOrder: 23 },
-  { slug: 'bogura-azizul', name: 'Government Azizul Haque College', district: 'Bogura', sortOrder: 24 },
-  { slug: 'pabna-edward', name: 'Edward College', district: 'Pabna', sortOrder: 25 },
-  { slug: 'kushtia-govt', name: 'Kushtia Government College', district: 'Kushtia', sortOrder: 26 },
-  { slug: 'faridpur-rajendra', name: 'Rajendra College', district: 'Faridpur', sortOrder: 27 },
-  { slug: 'tangail-govt', name: 'Government Saadat College', district: 'Tangail', sortOrder: 28 },
-  { slug: 'gazipur-govt', name: 'Bhawal Badre Alam Government College', district: 'Gazipur', sortOrder: 29 },
-  { slug: 'narayanganj-govt', name: 'Government Tolaram College', district: 'Narayanganj', sortOrder: 30 },
-  { slug: 'savar-govt', name: 'Savar Government College', district: 'Dhaka', sortOrder: 31 },
-  { slug: 'dinajpur-surendranath', name: 'Surendranath College', district: 'Dinajpur', sortOrder: 32 },
-  { slug: 'noakhali-govt', name: 'Noakhali Government College', district: 'Noakhali', sortOrder: 33 },
-  { slug: 'feni-govt', name: 'Feni Government College', district: 'Feni', sortOrder: 34 },
 ];

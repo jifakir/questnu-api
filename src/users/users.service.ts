@@ -14,6 +14,7 @@ import * as crypto from 'crypto';
 import * as path from 'path';
 import type { Express } from 'express';
 import type { Readable } from 'stream';
+import { College, CollegeDocument } from '../modules/academics/schemas/college.schema';
 import { User, UserDocument, UserRole } from './user.schema';
 
 const AVATAR_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
@@ -27,6 +28,7 @@ export type AuthUserSummary = {
   whatsappNumber: string | null;
   avatarUrl: string | null;
   avatarRequiresAuth: boolean;
+  collegeCode: string | null;
   collegeName: string | null;
   department: string | null;
   currentYear: string | null;
@@ -36,6 +38,7 @@ export type AuthUserSummary = {
 export class UsersService implements OnModuleInit {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    @InjectModel(College.name) private readonly colleges: Model<CollegeDocument>,
     private readonly config: ConfigService,
   ) {}
 
@@ -111,6 +114,7 @@ export class UsersService implements OnModuleInit {
       whatsappNumber: user.whatsappNumber?.trim() || null,
       avatarUrl: upload ? null : external || null,
       avatarRequiresAuth: !!upload,
+      collegeCode: user.collegeCode?.trim() || null,
       collegeName: user.collegeName?.trim() || null,
       department: user.department?.trim() || null,
       currentYear: user.currentYear?.trim() || null,
@@ -129,6 +133,7 @@ export class UsersService implements OnModuleInit {
       name?: string;
       clearAvatar?: boolean;
       whatsappNumber?: string;
+      collegeCode?: string;
       collegeName?: string;
       department?: string;
       currentYear?: string;
@@ -138,6 +143,7 @@ export class UsersService implements OnModuleInit {
       body.name === undefined &&
       body.clearAvatar === undefined &&
       body.whatsappNumber === undefined &&
+      body.collegeCode === undefined &&
       body.collegeName === undefined &&
       body.department === undefined &&
       body.currentYear === undefined
@@ -162,6 +168,10 @@ export class UsersService implements OnModuleInit {
       } else {
         user.whatsappNumber = this.validateWhatsapp(t);
       }
+    }
+    this.assignOptionalText(user, 'collegeCode', body.collegeCode, 16);
+    if (body.collegeCode !== undefined && body.collegeCode.trim()) {
+      user.set('collegeName', undefined);
     }
     this.assignOptionalText(user, 'collegeName', body.collegeName, 160);
     this.assignOptionalText(user, 'department', body.department, 160);
@@ -334,7 +344,7 @@ export class UsersService implements OnModuleInit {
 
   private assignOptionalText(
     user: UserDocument,
-    field: 'collegeName' | 'department' | 'currentYear',
+    field: 'collegeCode' | 'collegeName' | 'department' | 'currentYear',
     value: string | undefined,
     max: number,
   ) {
@@ -425,6 +435,7 @@ export class UsersService implements OnModuleInit {
         whatsappNumber: 1,
         googlePhotoUrl: 1,
         avatarUploadRel: 1,
+        collegeCode: 1,
         collegeName: 1,
         department: 1,
         currentYear: 1,
@@ -434,24 +445,51 @@ export class UsersService implements OnModuleInit {
       .lean()
       .exec();
     if (!u) return null;
-    return this.toStudentDetail(u);
+    const code = u.collegeCode?.trim();
+    const college = code
+      ? await this.colleges.findOne({ slug: code.toLowerCase() }).lean().exec()
+      : null;
+    return this.toStudentDetail(u, college);
   }
 
-  private toStudentDetail(u: {
-    _id: { toString(): string };
-    email: string;
-    name?: string;
-    whatsappNumber?: string;
-    googlePhotoUrl?: string;
-    avatarUploadRel?: string;
-    collegeName?: string;
-    department?: string;
-    currentYear?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-  }) {
+  private toStudentDetail(
+    u: {
+      _id: { toString(): string };
+      email: string;
+      name?: string;
+      whatsappNumber?: string;
+      googlePhotoUrl?: string;
+      avatarUploadRel?: string;
+      collegeCode?: string;
+      collegeName?: string;
+      department?: string;
+      currentYear?: string;
+      createdAt?: Date;
+      updatedAt?: Date;
+    },
+    college: {
+      slug: string;
+      name: string;
+      email?: string;
+      address?: string;
+      upazilla?: string;
+      district?: string;
+      division?: string;
+    } | null,
+  ) {
     const upload = u.avatarUploadRel?.trim();
     const external = u.googlePhotoUrl?.trim();
+    const populated = college
+      ? {
+          code: college.slug,
+          name: college.name,
+          email: college.email?.trim() || null,
+          address: college.address?.trim() || null,
+          upazilla: college.upazilla?.trim() || null,
+          district: college.district?.trim() || null,
+          division: college.division?.trim() || null,
+        }
+      : null;
     return {
       id: u._id.toString(),
       email: u.email,
@@ -459,7 +497,9 @@ export class UsersService implements OnModuleInit {
       whatsappNumber: u.whatsappNumber?.trim() || null,
       avatarUrl: upload ? null : external || null,
       avatarRequiresAuth: !!upload,
-      collegeName: u.collegeName?.trim() || null,
+      collegeCode: u.collegeCode?.trim() || populated?.code || null,
+      college: populated,
+      collegeName: populated?.name || u.collegeName?.trim() || null,
       department: u.department?.trim() || null,
       currentYear: u.currentYear?.trim() || null,
       createdAt: u.createdAt,
