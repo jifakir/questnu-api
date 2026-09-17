@@ -1,0 +1,443 @@
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { AcademicDraftStatus } from './academic.constants';
+import { assertSlug } from './academic.util';
+import type {
+  CreateCollegeDto,
+  CreateDepartmentDto,
+  CreateYearDto,
+  UpdateCollegeDto,
+  UpdateDepartmentDto,
+  UpdateYearDto,
+} from './dto/academic.dto';
+import {
+  STARTER_COLLEGES,
+  STARTER_DEPARTMENTS,
+  STARTER_YEARS,
+} from './seed/starter-catalog';
+import { AcademicYear, AcademicYearDocument } from './schemas/academic-year.schema';
+import { College, CollegeDocument } from './schemas/college.schema';
+import { Department, DepartmentDocument } from './schemas/department.schema';
+import { Question, QuestionDocument } from './schemas/question.schema';
+import { Subject, SubjectDocument } from './schemas/subject.schema';
+
+function isDuplicateKey(err: unknown): boolean {
+  return (
+    typeof err === 'object' &&
+    err !== null &&
+    (err as { code?: number }).code === 11000
+  );
+}
+
+@Injectable()
+export class StructureService {
+  constructor(
+    @InjectModel(College.name)
+    private readonly colleges: Model<CollegeDocument>,
+    @InjectModel(Department.name)
+    private readonly departments: Model<DepartmentDocument>,
+    @InjectModel(AcademicYear.name)
+    private readonly years: Model<AcademicYearDocument>,
+    @InjectModel(Subject.name)
+    private readonly subjects: Model<SubjectDocument>,
+    @InjectModel(Question.name)
+    private readonly questions: Model<QuestionDocument>,
+  ) {}
+
+  listColleges() {
+    return this.colleges.find().sort({ sortOrder: 1, name: 1 }).lean().exec();
+  }
+
+  async listDepartments() {
+    const [rows, counts] = await Promise.all([
+      this.departments.find().sort({ sortOrder: 1, name: 1 }).lean().exec(),
+      this.subjects.aggregate<{ _id: string; count: number }>([
+        { $group: { _id: '$departmentId', count: { $sum: 1 } } },
+      ]),
+    ]);
+    const totals = new Map(counts.map((row) => [row._id, row.count]));
+    return rows.map((row) => ({
+      ...row,
+      subjectCount: totals.get(row.slug) ?? 0,
+    }));
+  }
+
+  listYears() {
+    return this.years.find().sort({ sortOrder: 1, slug: 1 }).lean().exec();
+  }
+
+  async overview() {
+    const [colleges, departments, years, subjects, questions, draftSubjects] =
+      await Promise.all([
+        this.colleges.countDocuments().exec(),
+        this.departments.countDocuments().exec(),
+        this.years.countDocuments().exec(),
+        this.subjects.countDocuments().exec(),
+        this.questions.countDocuments().exec(),
+        this.subjects.countDocuments({ status: AcademicDraftStatus.Draft }).exec(),
+      ]);
+    const byYear = await this.subjects.aggregate<{ _id: string; count: number }>([
+      { $group: { _id: '$yearId', count: { $sum: 1 } } },
+      { $sort: { _id: 1 } },
+    ]);
+    const byDepartment = await this.subjects.aggregate<{
+      _id: string;
+      subjects: number;
+      ready: number;
+    }>([
+      {
+        $group: {
+          _id: '$departmentId',
+          subjects: { $sum: 1 },
+          ready: {
+            $sum: {
+              $cond: [{ $eq: ['$status', AcademicDraftStatus.Ready] }, 1, 0],
+            },
+          },
+        },
+      },
+    ]);
+    const departmentsDocs = await this.listDepartments();
+    const yearsDocs = await this.listYears();
+    const subjectCounts = new Map(byDepartment.map((row) => [row._id, row]));
+    return {
+      colleges,
+      departments,
+      years,
+      subjects,
+      questions,
+      draftSubjects,
+      readySubjects: subjects - draftSubjects,
+      subjectsByYear: byYear.map((row) => ({
+        yearId: row._id,
+        count: row.count,
+      })),
+      departmentCoverage: departmentsDocs.map((dept) => ({
+        slug: dept.slug,
+        name: dept.name,
+        nameBn: dept.nameBn ?? '',
+        subjects: subjectCounts.get(dept.slug)?.subjects ?? 0,
+        ready: subjectCounts.get(dept.slug)?.ready ?? 0,
+      })),
+      yearCoverage: yearsDocs.map((year) => ({
+        slug: year.slug,
+        label: year.label,
+        labelBn: year.labelBn ?? '',
+        subjects: byYear.find((row) => row._id === year.slug)?.count ?? 0,
+      })),
+      publishing:
+        'This is the draft catalog. Students still use the copy bundled in the app until a signed release is published.',
+    };
+  }
+
+  async ensureStarter() {
+    const departments = await this.insertMissing(
+      this.departments,
+      STARTER_DEPARTMENTS.map((item) => ({
+        slug: item.slug,
+        name: item.name,
+        nameBn: item.nameBn ?? '',
+        sortOrder: item.sortOrder,
+      })),
+    );
+    const years = await this.insertMissing(
+      this.years,
+      STARTER_YEARS.map((item) => ({
+        slug: item.slug,
+        label: item.label,
+        labelBn: item.labelBn,
+        sortOrder: item.sortOrder,
+      })),
+    );
+    const colleges = await this.insertMissing(
+      this.colleges,
+      STARTER_COLLEGES.map((item) => ({
+        slug: item.slug,
+        name: item.name,
+        district: item.district,
+        nameBn: '',
+        sortOrder: item.sortOrder,
+      })),
+    );
+    return { departments, years, colleges };
+  }
+
+  async bootstrap() {
+    const departments = await this.upsertMany(
+      this.departments,
+      STARTER_DEPARTMENTS.map((item) => ({
+        slug: item.slug,
+        name: item.name,
+        nameBn: item.nameBn ?? '',
+        sortOrder: item.sortOrder,
+      })),
+    );
+    const years = await this.upsertMany(
+      this.years,
+      STARTER_YEARS.map((item) => ({
+        slug: item.slug,
+        label: item.label,
+        labelBn: item.labelBn,
+        sortOrder: item.sortOrder,
+      })),
+    );
+    const colleges = await this.upsertMany(
+      this.colleges,
+      STARTER_COLLEGES.map((item) => ({
+        slug: item.slug,
+        name: item.name,
+        district: item.district,
+        nameBn: '',
+        sortOrder: item.sortOrder,
+      })),
+    );
+    return { departments, years, colleges };
+  }
+
+  async createDepartment(dto: CreateDepartmentDto) {
+    return this.createUnique(this.departments, 'Department', {
+      slug: assertSlug(dto.slug),
+      name: dto.name.trim(),
+      nameBn: dto.nameBn?.trim() ?? '',
+      sortOrder: dto.sortOrder ?? 0,
+    });
+  }
+
+  async updateDepartment(slug: string, dto: UpdateDepartmentDto) {
+    const current = assertSlug(slug, 'Department');
+    const next = dto.slug ? assertSlug(dto.slug) : current;
+    const doc = await this.departments
+      .findOneAndUpdate(
+        { slug: current },
+        {
+          $set: {
+            ...(dto.slug ? { slug: next } : {}),
+            ...(dto.name !== undefined ? { name: dto.name.trim() } : {}),
+            ...(dto.nameBn !== undefined ? { nameBn: dto.nameBn.trim() } : {}),
+            ...(dto.sortOrder !== undefined ? { sortOrder: dto.sortOrder } : {}),
+          },
+        },
+        { new: true },
+      )
+      .lean()
+      .exec();
+    if (!doc) throw new NotFoundException('Department not found');
+    if (next !== current) {
+      await this.subjects.updateMany(
+        { departmentId: current },
+        { $set: { departmentId: next } },
+      );
+      await this.questions.updateMany(
+        { departmentId: current },
+        { $set: { departmentId: next } },
+      );
+    }
+    return doc;
+  }
+
+  async removeDepartment(slug: string) {
+    const id = assertSlug(slug, 'Department');
+    const used = await this.subjects.countDocuments({ departmentId: id }).exec();
+    if (used > 0) {
+      throw new ConflictException(
+        `Cannot delete: ${used} syllabus subject(s) still use this department`,
+      );
+    }
+    const res = await this.departments.deleteOne({ slug: id }).exec();
+    if (!res.deletedCount) throw new NotFoundException('Department not found');
+    return { deleted: true };
+  }
+
+  async createYear(dto: CreateYearDto) {
+    return this.createUnique(this.years, 'Year', {
+      slug: assertSlug(dto.slug),
+      label: dto.label.trim(),
+      labelBn: dto.labelBn?.trim() ?? '',
+      sortOrder: dto.sortOrder ?? 0,
+    });
+  }
+
+  async updateYear(slug: string, dto: UpdateYearDto) {
+    const current = assertSlug(slug, 'Year');
+    const next = dto.slug ? assertSlug(dto.slug) : current;
+    const doc = await this.years
+      .findOneAndUpdate(
+        { slug: current },
+        {
+          $set: {
+            ...(dto.slug ? { slug: next } : {}),
+            ...(dto.label !== undefined ? { label: dto.label.trim() } : {}),
+            ...(dto.labelBn !== undefined ? { labelBn: dto.labelBn.trim() } : {}),
+            ...(dto.sortOrder !== undefined ? { sortOrder: dto.sortOrder } : {}),
+          },
+        },
+        { new: true },
+      )
+      .lean()
+      .exec();
+    if (!doc) throw new NotFoundException('Year not found');
+    if (next !== current) {
+      await this.subjects.updateMany({ yearId: current }, { $set: { yearId: next } });
+      await this.questions.updateMany({ yearId: current }, { $set: { yearId: next } });
+    }
+    return doc;
+  }
+
+  async removeYear(slug: string) {
+    const id = assertSlug(slug, 'Year');
+    const used = await this.subjects.countDocuments({ yearId: id }).exec();
+    if (used > 0) {
+      throw new ConflictException(
+        `Cannot delete: ${used} syllabus subject(s) still use this year`,
+      );
+    }
+    const res = await this.years.deleteOne({ slug: id }).exec();
+    if (!res.deletedCount) throw new NotFoundException('Year not found');
+    return { deleted: true };
+  }
+
+  async createCollege(dto: CreateCollegeDto) {
+    return this.createUnique(this.colleges, 'College', {
+      slug: assertSlug(dto.slug),
+      name: dto.name.trim(),
+      nameBn: dto.nameBn?.trim() ?? '',
+      district: dto.district?.trim() ?? '',
+      sortOrder: dto.sortOrder ?? 0,
+    });
+  }
+
+  async updateCollege(slug: string, dto: UpdateCollegeDto) {
+    const current = assertSlug(slug, 'College');
+    const doc = await this.colleges
+      .findOneAndUpdate(
+        { slug: current },
+        {
+          $set: {
+            ...(dto.slug ? { slug: assertSlug(dto.slug) } : {}),
+            ...(dto.name !== undefined ? { name: dto.name.trim() } : {}),
+            ...(dto.nameBn !== undefined ? { nameBn: dto.nameBn.trim() } : {}),
+            ...(dto.district !== undefined ? { district: dto.district.trim() } : {}),
+            ...(dto.sortOrder !== undefined ? { sortOrder: dto.sortOrder } : {}),
+          },
+        },
+        { new: true },
+      )
+      .lean()
+      .exec();
+    if (!doc) throw new NotFoundException('College not found');
+    return doc;
+  }
+
+  async removeCollege(slug: string) {
+    const id = assertSlug(slug, 'College');
+    const res = await this.colleges.deleteOne({ slug: id }).exec();
+    if (!res.deletedCount) throw new NotFoundException('College not found');
+    return { deleted: true };
+  }
+
+  async ensureDepartment(slug: string, name?: string) {
+    const id = assertSlug(slug, 'Department');
+    await this.departments.updateOne(
+      { slug: id },
+      {
+        $setOnInsert: {
+          slug: id,
+          name:
+            name?.trim() ||
+            id
+              .replace(/[_-]+/g, ' ')
+              .replace(/\b\w/g, (letter) => letter.toUpperCase()),
+          nameBn: '',
+          sortOrder: 1000,
+        },
+      },
+      { upsert: true },
+    );
+  }
+
+  async ensureYear(slug: string) {
+    const id = assertSlug(slug, 'Year');
+    const known = STARTER_YEARS.find((year) => year.slug === id);
+    await this.years.updateOne(
+      { slug: id },
+      {
+        $setOnInsert: {
+          slug: id,
+          label: known?.label ?? `Year ${id}`,
+          labelBn: known?.labelBn ?? '',
+          sortOrder: known?.sortOrder ?? 100,
+        },
+      },
+      { upsert: true },
+    );
+  }
+
+  async requireDepartment(slug: string) {
+    const doc = await this.departments.findOne({ slug: assertSlug(slug) }).lean().exec();
+    if (!doc) throw new NotFoundException(`Department "${slug}" not found`);
+    return doc;
+  }
+
+  async requireYear(slug: string) {
+    const doc = await this.years.findOne({ slug: assertSlug(slug) }).lean().exec();
+    if (!doc) throw new NotFoundException(`Year "${slug}" not found`);
+    return doc;
+  }
+
+  private async createUnique(
+    model: Model<DepartmentDocument | AcademicYearDocument | CollegeDocument>,
+    label: string,
+    payload: Record<string, unknown>,
+  ) {
+    try {
+      const doc = await model.create(
+        payload as Partial<Department & AcademicYear & College>,
+      );
+      return doc.toJSON();
+    } catch (err) {
+      if (isDuplicateKey(err)) {
+        throw new ConflictException(`${label} slug already exists`);
+      }
+      throw err;
+    }
+  }
+
+  private async insertMissing<T>(
+    model: Model<T>,
+    rows: Record<string, unknown>[],
+  ) {
+    let created = 0;
+    for (const row of rows) {
+      const res = await model.updateOne(
+        { slug: row.slug },
+        { $setOnInsert: row },
+        { upsert: true },
+      );
+      if (res.upsertedCount) created += 1;
+    }
+    return { created, unchanged: rows.length - created, total: rows.length };
+  }
+
+  private async upsertMany<T>(
+    model: Model<T>,
+    rows: Record<string, unknown>[],
+  ) {
+    let created = 0;
+    let updated = 0;
+    for (const row of rows) {
+      const res = await model.updateOne(
+        { slug: row.slug },
+        { $set: row },
+        { upsert: true },
+      );
+      if (res.upsertedCount) created += 1;
+      else if (res.modifiedCount) updated += 1;
+    }
+    return { created, updated, total: rows.length };
+  }
+}

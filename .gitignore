@@ -1,0 +1,66 @@
+# Compiled output
+/dist
+/build
+
+# Dependencies
+/node_modules
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+serviceAccount*.json
+*firebase-adminsdk*.json
+*client_secret*.json
+
+# Uploaded exam papers, resources, and avatars
+/uploads
+
+# Tests and coverage
+/coverage
+/.nyc_output
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+.temp
+.tmp
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Caches
+.eslintcache
+*.tsbuildinfo
+.pnpm-store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
