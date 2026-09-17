@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  NotFoundException,
   Body,
   Controller,
   Delete,
@@ -29,6 +30,7 @@ import {
   UpdateSubjectDto,
   UpdateYearDto,
 } from './dto/academic.dto';
+import { CoursesService } from './courses.service';
 import { QuestionsService } from './questions.service';
 import { CatalogSeedService } from './seed/catalog-seed.service';
 import { StructureService } from './structure.service';
@@ -41,6 +43,7 @@ export class AcademicsController {
   constructor(
     private readonly structure: StructureService,
     private readonly subjects: SubjectsService,
+    private readonly courses: CoursesService,
     private readonly questions: QuestionsService,
     private readonly catalogSeed: CatalogSeedService,
   ) {}
@@ -121,6 +124,18 @@ export class AcademicsController {
   @Delete('years/:slug')
   removeYear(@Param('slug') slug: string) {
     return this.structure.removeYear(slug);
+  }
+
+  @Get('courses')
+  listCourses() {
+    return this.courses.list();
+  }
+
+  @Get('courses/:code')
+  async courseByCode(@Param('code') code: string) {
+    const course = await this.courses.findByCode(code);
+    if (!course) throw new NotFoundException('Course not found');
+    return course;
   }
 
   @Get('subjects')

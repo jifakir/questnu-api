@@ -25,6 +25,7 @@ import {
   SubjectOutcome,
 } from './schemas/subject.schema';
 import { STARTER_DEPARTMENTS } from './seed/starter-catalog';
+import { CoursesService } from './courses.service';
 import { StructureService } from './structure.service';
 
 const SUMMARY = {
@@ -59,6 +60,7 @@ export class SubjectsService {
     @InjectModel(Question.name)
     private readonly questions: Model<QuestionDocument>,
     private readonly structure: StructureService,
+    private readonly courses: CoursesService,
   ) {}
 
   list(filters: { departmentId?: string; yearId?: string; status?: string }) {
@@ -83,7 +85,12 @@ export class SubjectsService {
     await this.structure.requireDepartment(dto.departmentId);
     await this.structure.requireYear(dto.yearId);
     try {
-      const doc = await this.subjects.create(this.fromDto(dto));
+      const created = this.fromDto(dto);
+      const doc = await this.subjects.create(created);
+      await this.courses.upsertFromSubject({
+        ...created,
+        status: created.status,
+      });
       return doc.toJSON();
     } catch (err) {
       if (this.isDuplicate(err)) {
@@ -107,6 +114,8 @@ export class SubjectsService {
       .lean()
       .exec();
     if (!doc) throw new NotFoundException('Subject not found');
+    await this.courses.unlinkSubject(current);
+    await this.courses.upsertFromSubject(doc);
     if (next !== current) {
       await this.questions.updateMany(
         { subjectSlug: current },
@@ -142,6 +151,7 @@ export class SubjectsService {
         `Cannot delete: ${used} question(s) still belong to this subject`,
       );
     }
+    await this.courses.unlinkSubject(id);
     const res = await this.subjects.deleteOne({ slug: id }).exec();
     if (!res.deletedCount) throw new NotFoundException('Subject not found');
     return { deleted: true };
@@ -288,6 +298,10 @@ export class SubjectsService {
         );
         if (res.upsertedCount) result.created += 1;
         else result.updated += 1;
+        await this.courses.upsertFromSubject({
+          ...payload,
+          status: opts.insertStatus ?? AcademicDraftStatus.Draft,
+        });
       } catch (err) {
         result.failed += 1;
         if (result.errors.length < 40) {

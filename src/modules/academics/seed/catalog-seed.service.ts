@@ -8,6 +8,7 @@ import { canonicalDepartmentId } from '../academic.util';
 import { Subject, SubjectDocument } from '../schemas/subject.schema';
 import { STARTER_DEPARTMENTS } from './starter-catalog';
 import { StructureService } from '../structure.service';
+import { CoursesService } from '../courses.service';
 import { SubjectsService } from '../subjects.service';
 
 @Injectable()
@@ -17,6 +18,7 @@ export class CatalogSeedService implements OnModuleInit {
   constructor(
     private readonly structure: StructureService,
     private readonly subjects: SubjectsService,
+    private readonly courses: CoursesService,
     @InjectModel(Subject.name)
     private readonly subjectModel: Model<SubjectDocument>,
   ) {}
@@ -30,6 +32,15 @@ export class CatalogSeedService implements OnModuleInit {
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       this.logger.error(`App catalog sync failed: ${message}`);
+    }
+    try {
+      const linked = await this.courses.syncFromSubjects();
+      this.logger.log(
+        `Courses: ${linked.courses} unique codes from ${linked.subjects} papers, ${linked.links} department links`,
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Course link sync failed: ${message}`);
     }
   }
 
