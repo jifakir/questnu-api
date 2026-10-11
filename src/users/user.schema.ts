@@ -52,6 +52,14 @@ export class User {
   /** Academic year the student is currently reading, e.g. 1st Year. */
   @Prop({ trim: true })
   currentYear?: string;
+
+  /** Overall credit-weighted CGPA across graded years. */
+  @Prop({ type: Number })
+  cgpa?: number;
+
+  /** Student target / goal CGPA. */
+  @Prop({ type: Number })
+  targetCgpa?: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

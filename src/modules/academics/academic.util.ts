@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
-import { ACADEMIC_SLUG } from './academic.constants';
+import { ACADEMIC_SLUG, OLD_SYLLABUS_TAG } from './academic.constants';
 import { STARTER_DEPARTMENTS } from './seed/starter-catalog';
 
 export function assertSlug(value: string, label = 'Slug'): string {
@@ -34,6 +34,37 @@ export function cleanStringList(value: unknown, max = 200): string[] {
   ].slice(0, max);
 }
 
+/** A course is old when it has no syllabus body: no outline, introduction, objectives, outcomes, books, or lab text. */
+export function hasSyllabusDetails(row: {
+  introduction?: string | null;
+  description?: string | null;
+  labDetails?: string | null;
+  objectives?: unknown[] | null;
+  outcomes?: unknown[] | null;
+  prescribedTexts?: unknown[] | null;
+  outline?: unknown[] | null;
+  books?: unknown[] | null;
+} | null | undefined): boolean {
+  if (!row) return false;
+  const text = [row.introduction, row.description, row.labDetails].some(
+    (value) => typeof value === 'string' && value.trim().length > 0,
+  );
+  const lists = [
+    row.objectives,
+    row.outcomes,
+    row.prescribedTexts,
+    row.outline,
+    row.books,
+  ].some((value) => Array.isArray(value) && value.length > 0);
+  return text || lists;
+}
+
+export function syllabusTags(hasDetails: boolean, tags: string[] = []): string[] {
+  const next = new Set(tags.filter((tag) => tag && tag !== OLD_SYLLABUS_TAG));
+  if (!hasDetails) next.add(OLD_SYLLABUS_TAG);
+  return [...next];
+}
+
 export function optionalText(value: unknown, max = 20000): string {
   if (value == null) return '';
   return String(value).trim().slice(0, max);
@@ -45,6 +76,21 @@ export const DEPARTMENT_ALIASES: Record<string, string> = {
   'library-and-information-science': 'library_science',
   library_and_information_science: 'library_science',
 };
+
+/**
+ * Compulsory-course JSON uses these ids so a shared paper can live in one file.
+ * They are course folders, not honours departments.
+ */
+export const SHARED_COURSE_PLACEHOLDER_IDS = ['common', 'ict'] as const;
+
+export function isSharedCoursePlaceholder(departmentId: string): boolean {
+  const id = departmentId.trim().toLowerCase().replace(/-/g, '_');
+  return (SHARED_COURSE_PLACEHOLDER_IDS as readonly string[]).includes(id);
+}
+
+export function isCompulsoryCourseFolder(name: string): boolean {
+  return name.trim().toLowerCase().startsWith('compulsory course');
+}
 
 /** JSON files use hyphens (`finance-and-banking`); the app uses underscores. */
 export function canonicalDepartmentId(raw: string): string {

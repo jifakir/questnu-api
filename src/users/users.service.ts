@@ -32,6 +32,8 @@ export type AuthUserSummary = {
   collegeName: string | null;
   department: string | null;
   currentYear: string | null;
+  cgpa: number | null;
+  targetCgpa: number | null;
 };
 
 @Injectable()
@@ -118,6 +120,8 @@ export class UsersService implements OnModuleInit {
       collegeName: user.collegeName?.trim() || null,
       department: user.department?.trim() || null,
       currentYear: user.currentYear?.trim() || null,
+      cgpa: typeof user.cgpa === 'number' ? user.cgpa : null,
+      targetCgpa: typeof user.targetCgpa === 'number' ? user.targetCgpa : null,
     };
   }
 
@@ -168,6 +172,10 @@ export class UsersService implements OnModuleInit {
       } else {
         user.whatsappNumber = this.validateWhatsapp(t);
       }
+    }
+    if (user.role !== UserRole.Student) {
+      await user.save();
+      return this.toAuthUserSummary(user);
     }
     this.assignOptionalText(user, 'collegeCode', body.collegeCode, 16);
     if (body.collegeCode !== undefined && body.collegeCode.trim()) {

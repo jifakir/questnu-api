@@ -13,7 +13,9 @@ import {
   cleanStringList,
   DEPARTMENT_ALIASES,
   formatLabDetails,
+  isSharedCoursePlaceholder,
   optionalText,
+  SHARED_COURSE_PLACEHOLDER_IDS,
   splitIntroduction,
 } from './academic.util';
 import type { CreateSubjectDto, UpdateSubjectDto } from './dto/academic.dto';
@@ -40,6 +42,7 @@ const SUMMARY = {
   classHours: 1,
   orientation: 1,
   status: 1,
+  tags: 1,
   updatedAt: 1,
 };
 
@@ -63,22 +66,46 @@ export class SubjectsService {
     private readonly courses: CoursesService,
   ) {}
 
-  list(filters: { departmentId?: string; yearId?: string; status?: string }) {
-    const query: Record<string, string> = {};
+  async list(filters: { departmentId?: string; yearId?: string; status?: string }) {
+    if (
+      filters.departmentId &&
+      isSharedCoursePlaceholder(filters.departmentId)
+    ) {
+      return [];
+    }
+    const query: Record<string, unknown> = {
+      departmentId: { $nin: [...SHARED_COURSE_PLACEHOLDER_IDS] },
+    };
     if (filters.departmentId) query.departmentId = assertSlug(filters.departmentId);
     if (filters.yearId) query.yearId = assertSlug(filters.yearId);
     if (filters.status) query.status = filters.status;
-    return this.subjects
+    const rows = await this.subjects
       .find(query, SUMMARY)
       .sort({ departmentId: 1, yearId: 1, code: 1 })
       .lean()
       .exec();
+    const summaries = await this.courses.summariesByCode(
+      rows.map((row) => row.code).filter((code): code is string => !!code?.trim()),
+    );
+    return rows.map((row) => {
+      const course = summaries.get(row.code);
+      if (!course) return row;
+      return {
+        ...row,
+        title: course.title || row.title,
+        titleBn: course.titleBn || row.titleBn,
+        marks: course.marks ?? row.marks,
+        credits: course.credits ?? row.credits,
+        classHours: course.classHours ?? row.classHours,
+        status: course.status ?? row.status,
+      };
+    });
   }
 
   async findOne(slug: string) {
     const doc = await this.subjects.findOne({ slug: assertSlug(slug) }).lean().exec();
-    if (!doc) throw new NotFoundException('Subject not found');
-    return doc;
+    if (!doc) throw new NotFoundException('Course not found');
+    return this.withCourseContent(doc);
   }
 
   async create(dto: CreateSubjectDto) {
@@ -86,15 +113,13 @@ export class SubjectsService {
     await this.structure.requireYear(dto.yearId);
     try {
       const created = this.fromDto(dto);
-      const doc = await this.subjects.create(created);
-      await this.courses.upsertFromSubject({
-        ...created,
-        status: created.status,
-      });
-      return doc.toJSON();
+      await this.courses.replaceContent(created);
+      const doc = await this.subjects.create(this.offeringOf(created));
+      await this.courses.upsertFromSubject(created);
+      return this.withCourseContent(doc.toJSON());
     } catch (err) {
       if (this.isDuplicate(err)) {
-        throw new ConflictException('Subject slug already exists');
+        throw new ConflictException('Course id already exists');
       }
       throw err;
     }
@@ -105,17 +130,41 @@ export class SubjectsService {
     if (dto.departmentId) await this.structure.requireDepartment(dto.departmentId);
     if (dto.yearId) await this.structure.requireYear(dto.yearId);
     const next = dto.slug ? assertSlug(dto.slug) : current;
+    const existing = await this.subjects.findOne({ slug: current }).lean().exec();
+    if (!existing) throw new NotFoundException('Course not found');
     const doc = await this.subjects
       .findOneAndUpdate(
         { slug: current },
-        { $set: this.patchFromDto(dto, next) },
+        { $set: this.offeringPatch(dto, next), $unset: this.syllabusUnset() },
         { new: true },
       )
       .lean()
       .exec();
-    if (!doc) throw new NotFoundException('Subject not found');
+    if (!doc) throw new NotFoundException('Course not found');
+    const code = doc.code?.trim() || existing.code;
+    const coursePatch = this.coursePatchFromDto(dto);
+    const updated = await this.courses.updateByCode(code, coursePatch);
+    if (!updated) {
+      await this.courses.replaceContent({
+        ...existing,
+        ...coursePatch,
+        code,
+        departmentId: doc.departmentId,
+        yearId: doc.yearId,
+        slug: doc.slug,
+        status: dto.status ?? existing.status,
+      });
+    }
     await this.courses.unlinkSubject(current);
-    await this.courses.upsertFromSubject(doc);
+    await this.courses.upsertFromSubject({
+      ...doc,
+      code,
+      departmentId: doc.departmentId,
+      yearId: doc.yearId,
+      slug: doc.slug,
+      title: dto.title ?? existing.title,
+      status: dto.status ?? existing.status,
+    });
     if (next !== current) {
       await this.questions.updateMany(
         { subjectSlug: current },
@@ -140,7 +189,7 @@ export class SubjectsService {
         },
       );
     }
-    return doc;
+    return this.findOne(doc.slug);
   }
 
   async remove(slug: string) {
@@ -148,12 +197,12 @@ export class SubjectsService {
     const used = await this.questions.countDocuments({ subjectSlug: id }).exec();
     if (used > 0) {
       throw new ConflictException(
-        `Cannot delete: ${used} question(s) still belong to this subject`,
+        `Cannot delete: ${used} question(s) still belong to this course`,
       );
     }
     await this.courses.unlinkSubject(id);
     const res = await this.subjects.deleteOne({ slug: id }).exec();
-    if (!res.deletedCount) throw new NotFoundException('Subject not found');
+    if (!res.deletedCount) throw new NotFoundException('Course not found');
     return { deleted: true };
   }
 
@@ -270,6 +319,13 @@ export class SubjectsService {
     for (const row of rows) {
       try {
         const payload = this.fromImportRow(row);
+        if (isSharedCoursePlaceholder(payload.departmentId)) {
+          await this.courses.upsertContent({
+            ...payload,
+            status: opts.insertStatus ?? AcademicDraftStatus.Draft,
+          });
+          continue;
+        }
         if (opts.createMissingStructure) {
           if (!knownDepartments.has(payload.departmentId)) {
             await this.structure.ensureDepartment(payload.departmentId);
@@ -286,13 +342,15 @@ export class SubjectsService {
           await this.structure.requireYear(payload.yearId);
         }
 
+        const offering = this.offeringOf({
+          ...payload,
+          status: opts.insertStatus ?? AcademicDraftStatus.Draft,
+        });
         const res = await this.subjects.updateOne(
           { slug: payload.slug },
           {
-            $set: payload,
-            $setOnInsert: {
-              status: opts.insertStatus ?? AcademicDraftStatus.Draft,
-            },
+            $set: offering,
+            $unset: this.syllabusUnset(),
           },
           { upsert: true },
         );
@@ -300,7 +358,7 @@ export class SubjectsService {
         else result.updated += 1;
         await this.courses.upsertFromSubject({
           ...payload,
-          status: opts.insertStatus ?? AcademicDraftStatus.Draft,
+          status: offering.status,
         });
       } catch (err) {
         result.failed += 1;
@@ -316,6 +374,271 @@ export class SubjectsService {
     return result;
   }
 
+  /**
+   * Save an uploaded syllabus as one course per code, then offer it in the
+   * selected departments. Does not create a department from the file.
+   */
+  async publishUpload(
+    raw: unknown,
+    opts: {
+      yearId: string;
+      departmentIds: string[];
+      status?: AcademicDraftStatus;
+    },
+  ) {
+    const yearId = assertSlug(opts.yearId, 'yearId');
+    await this.structure.requireYear(yearId);
+    const departmentIds = await this.realDepartments(opts.departmentIds);
+    const rows =
+      raw &&
+      typeof raw === 'object' &&
+      !Array.isArray(raw) &&
+      !Array.isArray((raw as { subjects?: unknown }).subjects)
+        ? [raw]
+        : this.asSubjectArray(raw);
+    const result = {
+      courses: 0,
+      created: 0,
+      linked: 0,
+      codes: [] as string[],
+    };
+
+    for (const row of rows) {
+      const payload = this.fromImportRow({
+        ...(row as Record<string, unknown>),
+        departmentId: departmentIds[0],
+        yearId,
+      });
+      const status = opts.status ?? AcademicDraftStatus.Ready;
+      await this.courses.replaceContent({ ...payload, status });
+      result.courses += 1;
+      result.codes.push(payload.code);
+      const attached = await this.attachToDepartments(payload, {
+        yearId,
+        departmentIds,
+        status,
+        overwrite: true,
+      });
+      result.created += attached.created;
+      result.linked += attached.linked;
+    }
+    return result;
+  }
+
+  async removeByCode(code: string) {
+    const trimmed = code.trim();
+    if (!trimmed) throw new BadRequestException('Course code is required');
+    const papers = await this.subjects
+      .find({ code: trimmed })
+      .select({ slug: 1 })
+      .lean()
+      .exec();
+    const slugs = papers.map((row) => row.slug).filter(Boolean);
+    if (slugs.length) {
+      const used = await this.questions
+        .countDocuments({ subjectSlug: { $in: slugs } })
+        .exec();
+      if (used > 0) {
+        throw new ConflictException(
+          `Cannot delete: ${used} question(s) still belong to this course`,
+        );
+      }
+      await this.subjects.deleteMany({ code: trimmed }).exec();
+      for (const slug of slugs) {
+        await this.courses.unlinkSubject(slug);
+      }
+    }
+    await this.courses.removeByCode(trimmed);
+    return { deleted: true, offerings: slugs.length };
+  }
+
+  async linkStoredCourse(
+    code: string,
+    opts: {
+      yearId: string;
+      departmentIds: string[];
+      status?: AcademicDraftStatus;
+    },
+  ) {
+    const yearId = assertSlug(opts.yearId, 'yearId');
+    await this.structure.requireYear(yearId);
+    const departmentIds = await this.realDepartments(opts.departmentIds);
+    const trimmed = code.trim();
+    let course = await this.courses.findByCode(trimmed);
+    if (!course) {
+      const papers = await this.subjects.find({ code: trimmed }).lean().exec();
+      papers.sort(
+        (a, b) =>
+          (b.outline?.length ?? 0) * 20 +
+          (b.introduction?.length ?? 0) -
+          ((a.outline?.length ?? 0) * 20 + (a.introduction?.length ?? 0)),
+      );
+      const paper =
+        papers.find((row) => !isSharedCoursePlaceholder(row.departmentId)) ??
+        papers[0];
+      if (!paper) throw new NotFoundException('Course not found');
+      await this.courses.upsertContent({
+        ...paper,
+        departmentId: paper.departmentId,
+        yearId: paper.yearId,
+        slug: paper.slug,
+      });
+      course = await this.courses.findByCode(trimmed);
+    }
+    if (!course) throw new NotFoundException('Course not found');
+    const status = opts.status ?? course.status ?? AcademicDraftStatus.Ready;
+    return this.attachToDepartments(
+      {
+        slug: `course-${course.code}`,
+        departmentId: departmentIds[0],
+        yearId,
+        code: course.code,
+        title: course.title,
+        titleBn: course.titleBn ?? '',
+        marks: course.marks,
+        credits: course.credits,
+        classHours: course.classHours,
+        examDuration: course.examDuration ?? '',
+        orientation: course.orientation ?? '',
+        description: course.description ?? '',
+        introduction: course.introduction ?? '',
+        objectives: course.objectives ?? [],
+        outcomes: course.outcomes ?? [],
+        prescribedTexts: course.prescribedTexts ?? [],
+        outline: course.outline ?? [],
+        labDetails: course.labDetails ?? '',
+        books: course.books ?? [],
+      },
+      { yearId, departmentIds, status, overwrite: false },
+    );
+  }
+
+  private async realDepartments(ids: string[]) {
+    const departmentIds = [
+      ...new Set(
+        ids
+          .map((id) => canonicalDepartmentId(assertSlug(id, 'departmentId')))
+          .filter((id) => !isSharedCoursePlaceholder(id)),
+      ),
+    ];
+    if (!departmentIds.length) {
+      throw new BadRequestException('Choose at least one department');
+    }
+    for (const id of departmentIds) {
+      await this.structure.requireDepartment(id);
+    }
+    return departmentIds;
+  }
+
+  private offeringSlug(departmentId: string, code: string) {
+    return assertSlug(
+      `${departmentId}-${code}`
+        .toLowerCase()
+        .replace(/[^a-z0-9_-]+/g, '-')
+        .slice(0, 81),
+      'Course id',
+    );
+  }
+
+  private async attachToDepartments(
+    payload: ReturnType<SubjectsService['fromImportRow']>,
+    opts: {
+      yearId: string;
+      departmentIds: string[];
+      status: AcademicDraftStatus;
+      overwrite: boolean;
+    },
+  ) {
+    let created = 0;
+    let linked = 0;
+    for (const departmentId of opts.departmentIds) {
+      const existing = await this.subjects
+        .findOne({
+          departmentId,
+          yearId: opts.yearId,
+          code: payload.code,
+        })
+        .lean()
+        .exec();
+      const slug = existing?.slug ?? this.offeringSlug(departmentId, payload.code);
+      const offering = this.offeringOf({
+        ...payload,
+        slug,
+        departmentId,
+        yearId: opts.yearId,
+        status: opts.status,
+      });
+      if (!existing) {
+        await this.subjects.create(offering);
+        created += 1;
+      } else if (opts.overwrite) {
+        await this.subjects
+          .updateOne(
+            { slug },
+            { $set: offering, $unset: this.syllabusUnset() },
+          )
+          .exec();
+      }
+      await this.courses.upsertFromSubject({
+        ...payload,
+        slug,
+        departmentId,
+        yearId: opts.yearId,
+        status: opts.status,
+      });
+      linked += 1;
+    }
+    return { created, linked };
+  }
+
+  /** Compulsory-course JSON is a course, not a department paper. */
+  async importAsSharedCourse(
+    row: unknown,
+    status = AcademicDraftStatus.Ready,
+  ) {
+    const payload = this.fromImportRow(row);
+    await this.courses.upsertContent({ ...payload, status });
+  }
+
+  /**
+   * Drop departments created from compulsory-course folders.
+   * Questions move onto a real department copy of the same course code.
+   */
+  async purgeSharedCoursePlaceholders() {
+    const rows = await this.subjects
+      .find({ departmentId: { $in: [...SHARED_COURSE_PLACEHOLDER_IDS] } })
+      .lean()
+      .exec();
+    for (const row of rows) {
+      const real = await this.subjects
+        .findOne({
+          code: row.code,
+          yearId: row.yearId,
+          departmentId: { $nin: [...SHARED_COURSE_PLACEHOLDER_IDS] },
+        })
+        .lean()
+        .exec();
+      if (real) {
+        await this.questions
+          .updateMany(
+            { subjectSlug: row.slug },
+            {
+              $set: {
+                subjectSlug: real.slug,
+                departmentId: real.departmentId,
+                yearId: real.yearId,
+              },
+            },
+          )
+          .exec();
+      }
+      await this.courses.unlinkSubject(row.slug);
+      await this.subjects.deleteOne({ slug: row.slug }).exec();
+    }
+    await this.courses.dropPlaceholderLinks();
+    await this.structure.removeSharedCourseDepartments();
+  }
+
   private asSubjectArray(raw: unknown): unknown[] {
     if (Array.isArray(raw)) return raw;
     if (
@@ -326,26 +649,35 @@ export class SubjectsService {
       return (raw as { subjects: unknown[] }).subjects;
     }
     throw new BadRequestException(
-      'Syllabus file must be a JSON array of subjects, or { "subjects": [...] }',
+      'Syllabus file must be a JSON array of courses, or { "subjects": [...] }',
     );
   }
 
   private fromImportRow(row: unknown) {
     if (!row || typeof row !== 'object') {
-      throw new BadRequestException('Subject row is not an object');
+      throw new BadRequestException('Course row is not an object');
     }
     const item = row as Record<string, unknown>;
-    const slug = assertSlug(String(item.id ?? item.slug ?? ''), 'Subject id');
+    const title = optionalText(item.title, 300);
+    const code = optionalText(item.code, 40);
+    if (!title || !code) {
+      throw new BadRequestException('Course needs a title and code');
+    }
+    const rawId = String(item.id ?? item.slug ?? '').trim();
+    const slug = assertSlug(
+      rawId ||
+        `course-${code}`
+          .toLowerCase()
+          .replace(/[^a-z0-9_-]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+          .slice(0, 81),
+      'Course id',
+    );
     const departmentId = assertSlug(
       String(item.departmentId ?? item.department_id ?? ''),
       'departmentId',
     );
     const yearId = assertSlug(String(item.yearId ?? item.year_id ?? ''), 'yearId');
-    const title = optionalText(item.title, 300);
-    const code = optionalText(item.code, 40);
-    if (!title || !code) {
-      throw new BadRequestException('Subject needs a title and code');
-    }
     const description = optionalText(item.description, 16000);
     const objectives = cleanStringList(item.objectives);
     const introFromFile = optionalText(item.introduction, 16000);
@@ -468,6 +800,104 @@ export class SubjectsService {
     if (dto.books !== undefined) $set.books = cleanStringList(dto.books);
     if (dto.status !== undefined) $set.status = dto.status;
     return $set;
+  }
+
+  private offeringOf(row: {
+    slug: string;
+    departmentId: string;
+    yearId: string;
+    code: string;
+    title: string;
+    titleBn?: string;
+    marks?: number;
+    credits?: number;
+    classHours?: number | null;
+    status?: AcademicDraftStatus;
+  }) {
+    return {
+      slug: row.slug,
+      departmentId: row.departmentId,
+      yearId: row.yearId,
+      code: row.code,
+      title: row.title,
+      titleBn: row.titleBn ?? '',
+      marks: row.marks ?? 100,
+      credits: row.credits ?? 0,
+      classHours: row.classHours ?? null,
+      status: row.status ?? AcademicDraftStatus.Draft,
+    };
+  }
+
+  private offeringPatch(dto: UpdateSubjectDto, nextSlug: string) {
+    const patch = this.patchFromDto(dto, nextSlug);
+    for (const key of Object.keys(this.syllabusUnset())) {
+      delete patch[key];
+    }
+    return patch;
+  }
+
+  private coursePatchFromDto(dto: UpdateSubjectDto) {
+    return {
+      ...(dto.title !== undefined ? { title: dto.title.trim() } : {}),
+      ...(dto.titleBn !== undefined ? { titleBn: dto.titleBn.trim() } : {}),
+      ...(dto.marks !== undefined ? { marks: dto.marks } : {}),
+      ...(dto.credits !== undefined ? { credits: dto.credits } : {}),
+      ...(dto.classHours !== undefined ? { classHours: dto.classHours } : {}),
+      ...(dto.examDuration !== undefined ? { examDuration: dto.examDuration.trim() } : {}),
+      ...(dto.orientation !== undefined ? { orientation: dto.orientation.trim() } : {}),
+      ...(dto.description !== undefined ? { description: dto.description.trim() } : {}),
+      ...(dto.introduction !== undefined ? { introduction: dto.introduction.trim() } : {}),
+      ...(dto.objectives !== undefined ? { objectives: cleanStringList(dto.objectives) } : {}),
+      ...(dto.outcomes !== undefined ? { outcomes: dto.outcomes } : {}),
+      ...(dto.prescribedTexts !== undefined
+        ? { prescribedTexts: cleanStringList(dto.prescribedTexts) }
+        : {}),
+      ...(dto.outline !== undefined ? { outline: dto.outline } : {}),
+      ...(dto.labDetails !== undefined ? { labDetails: dto.labDetails.trim() } : {}),
+      ...(dto.books !== undefined ? { books: cleanStringList(dto.books) } : {}),
+      ...(dto.status !== undefined ? { status: dto.status } : {}),
+    };
+  }
+
+  private syllabusUnset() {
+    return {
+      introduction: 1,
+      description: 1,
+      objectives: 1,
+      outcomes: 1,
+      prescribedTexts: 1,
+      outline: 1,
+      labDetails: 1,
+      books: 1,
+      examDuration: 1,
+      orientation: 1,
+    } as const;
+  }
+
+  private async withCourseContent<T extends { code?: string }>(doc: T) {
+    const code = doc.code?.trim();
+    if (!code) return doc;
+    const course = await this.courses.findByCode(code);
+    if (!course) return doc;
+    return {
+      ...doc,
+      title: course.title,
+      titleBn: course.titleBn,
+      marks: course.marks,
+      credits: course.credits,
+      classHours: course.classHours,
+      examDuration: course.examDuration,
+      orientation: course.orientation,
+      description: course.description,
+      introduction: course.introduction,
+      objectives: course.objectives,
+      outcomes: course.outcomes,
+      prescribedTexts: course.prescribedTexts,
+      outline: course.outline,
+      labDetails: course.labDetails,
+      books: course.books,
+      status: course.status,
+    };
   }
 
   private rowSlug(row: unknown): string | undefined {

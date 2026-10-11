@@ -25,7 +25,7 @@ const upload = memoryStorage();
 
 @Controller('users')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(UserRole.Student)
+@Roles(UserRole.Student, UserRole.Instructor, UserRole.Admin)
 export class ProfileController {
   constructor(private readonly usersService: UsersService) {}
 

@@ -8,7 +8,12 @@ import { promises as fs } from 'fs';
 import { Model } from 'mongoose';
 import * as path from 'path';
 import { AcademicDraftStatus } from './academic.constants';
-import { assertSlug } from './academic.util';
+import {
+  assertSlug,
+  isCompulsoryCourseFolder,
+  isSharedCoursePlaceholder,
+  SHARED_COURSE_PLACEHOLDER_IDS,
+} from './academic.util';
 import type {
   CreateCollegeDto,
   CreateDepartmentDto,
@@ -62,10 +67,16 @@ export class StructureService {
       ]),
     ]);
     const totals = new Map(counts.map((row) => [row._id, row.count]));
-    return rows.map((row) => ({
-      ...row,
-      subjectCount: totals.get(row.slug) ?? 0,
-    }));
+    return rows
+      .filter(
+        (row) =>
+          !isSharedCoursePlaceholder(row.slug) &&
+          !isCompulsoryCourseFolder(row.name),
+      )
+      .map((row) => ({
+        ...row,
+        subjectCount: totals.get(row.slug) ?? 0,
+      }));
   }
 
   listYears() {
@@ -304,7 +315,7 @@ export class StructureService {
     const used = await this.subjects.countDocuments({ departmentId: id }).exec();
     if (used > 0) {
       throw new ConflictException(
-        `Cannot delete: ${used} syllabus subject(s) still use this department`,
+        `Cannot delete: ${used} course(s) still use this department`,
       );
     }
     const res = await this.departments.deleteOne({ slug: id }).exec();
@@ -352,7 +363,7 @@ export class StructureService {
     const used = await this.subjects.countDocuments({ yearId: id }).exec();
     if (used > 0) {
       throw new ConflictException(
-        `Cannot delete: ${used} syllabus subject(s) still use this year`,
+        `Cannot delete: ${used} course(s) still use this year`,
       );
     }
     const res = await this.years.deleteOne({ slug: id }).exec();
@@ -399,8 +410,22 @@ export class StructureService {
     return { deleted: true };
   }
 
+  async removeSharedCourseDepartments() {
+    await this.departments
+      .deleteMany({
+        $or: [
+          { slug: { $in: [...SHARED_COURSE_PLACEHOLDER_IDS] } },
+          { name: { $regex: /^compulsory course/i } },
+        ],
+      })
+      .exec();
+  }
+
   async ensureDepartment(slug: string, name?: string) {
     const id = assertSlug(slug, 'Department');
+    if (isSharedCoursePlaceholder(id) || isCompulsoryCourseFolder(name ?? '')) {
+      return;
+    }
     await this.departments.updateOne(
       { slug: id },
       {

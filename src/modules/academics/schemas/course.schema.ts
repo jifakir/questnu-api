@@ -66,6 +66,10 @@ export class Course {
     default: AcademicDraftStatus.Draft,
   })
   status: AcademicDraftStatus;
+
+  /** Includes `old` when the course belongs to an obsolete syllabus. */
+  @Prop({ type: [String], default: [] })
+  tags: string[];
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);
