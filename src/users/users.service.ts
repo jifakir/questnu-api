@@ -8,13 +8,17 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { createReadStream } from 'fs';
 import { mkdir, unlink, writeFile } from 'fs/promises';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import * as crypto from 'crypto';
 import * as path from 'path';
 import type { Express } from 'express';
 import type { Readable } from 'stream';
 import { College, CollegeDocument } from '../modules/academics/schemas/college.schema';
+import {
+  StudentProfile,
+  StudentProfileDocument,
+} from './schemas/student-profile.schema';
 import { User, UserDocument, UserRole } from './user.schema';
 
 const AVATAR_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
@@ -30,7 +34,9 @@ export type AuthUserSummary = {
   avatarRequiresAuth: boolean;
   collegeCode: string | null;
   collegeName: string | null;
+  departmentId: string | null;
   department: string | null;
+  yearId: string | null;
   currentYear: string | null;
   cgpa: number | null;
   targetCgpa: number | null;
@@ -41,6 +47,8 @@ export class UsersService implements OnModuleInit {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     @InjectModel(College.name) private readonly colleges: Model<CollegeDocument>,
+    @InjectModel(StudentProfile.name)
+    private readonly studentProfiles: Model<StudentProfileDocument>,
     private readonly config: ConfigService,
   ) {}
 
@@ -118,7 +126,9 @@ export class UsersService implements OnModuleInit {
       avatarRequiresAuth: !!upload,
       collegeCode: user.collegeCode?.trim() || null,
       collegeName: user.collegeName?.trim() || null,
+      departmentId: null,
       department: user.department?.trim() || null,
+      yearId: null,
       currentYear: user.currentYear?.trim() || null,
       cgpa: typeof user.cgpa === 'number' ? user.cgpa : null,
       targetCgpa: typeof user.targetCgpa === 'number' ? user.targetCgpa : null,
@@ -128,7 +138,24 @@ export class UsersService implements OnModuleInit {
   async getProfile(userId: string): Promise<AuthUserSummary> {
     const user = await this.findById(userId);
     if (!user) throw new NotFoundException('User not found');
-    return this.toAuthUserSummary(user);
+    return this.summarizeUser(user);
+  }
+
+  /** Adds the student_profiles academic placement onto the account summary. */
+  async summarizeUser(user: UserDocument): Promise<AuthUserSummary> {
+    const summary = this.toAuthUserSummary(user);
+    if (user.role !== UserRole.Student) return summary;
+    const profile = await this.studentProfiles
+      .findOne({ userId: user._id })
+      .exec();
+    if (!profile) return summary;
+    const collegeCode = profile.collegeCode?.trim();
+    return {
+      ...summary,
+      collegeCode: collegeCode || summary.collegeCode,
+      departmentId: profile.departmentId?.trim() || null,
+      yearId: profile.yearId?.trim() || null,
+    };
   }
 
   async updateProfile(
@@ -139,7 +166,9 @@ export class UsersService implements OnModuleInit {
       whatsappNumber?: string;
       collegeCode?: string;
       collegeName?: string;
+      departmentId?: string;
       department?: string;
+      yearId?: string;
       currentYear?: string;
     },
   ): Promise<AuthUserSummary> {
@@ -149,7 +178,9 @@ export class UsersService implements OnModuleInit {
       body.whatsappNumber === undefined &&
       body.collegeCode === undefined &&
       body.collegeName === undefined &&
+      body.departmentId === undefined &&
       body.department === undefined &&
+      body.yearId === undefined &&
       body.currentYear === undefined
     ) {
       throw new BadRequestException('Nothing to update');
@@ -175,7 +206,7 @@ export class UsersService implements OnModuleInit {
     }
     if (user.role !== UserRole.Student) {
       await user.save();
-      return this.toAuthUserSummary(user);
+      return this.summarizeUser(user);
     }
     this.assignOptionalText(user, 'collegeCode', body.collegeCode, 16);
     if (body.collegeCode !== undefined && body.collegeCode.trim()) {
@@ -185,7 +216,47 @@ export class UsersService implements OnModuleInit {
     this.assignOptionalText(user, 'department', body.department, 160);
     this.assignOptionalText(user, 'currentYear', body.currentYear, 80);
     await user.save();
-    return this.toAuthUserSummary(user);
+    await this.saveStudentProfile(user._id, {
+      collegeCode: body.collegeCode,
+      departmentId: body.departmentId,
+      yearId: body.yearId,
+    });
+    return this.summarizeUser(user);
+  }
+
+  private async saveStudentProfile(
+    userId: Types.ObjectId,
+    fields: {
+      collegeCode?: string;
+      departmentId?: string;
+      yearId?: string;
+    },
+  ): Promise<void> {
+    const $set: Record<string, string> = {};
+    const $unset: Record<string, 1> = {};
+    const apply = (key: string, value: string | undefined) => {
+      if (value === undefined) return;
+      const trimmed = value.trim();
+      if (!trimmed.length) {
+        $unset[key] = 1;
+        return;
+      }
+      $set[key] = trimmed;
+    };
+    apply('collegeCode', fields.collegeCode);
+    apply('departmentId', fields.departmentId);
+    apply('yearId', fields.yearId);
+    if (!Object.keys($set).length && !Object.keys($unset).length) return;
+    await this.studentProfiles
+      .findOneAndUpdate(
+        { userId },
+        {
+          ...(Object.keys($set).length ? { $set } : {}),
+          ...(Object.keys($unset).length ? { $unset } : {}),
+        },
+        { upsert: true, setDefaultsOnInsert: true },
+      )
+      .exec();
   }
 
   async setAvatarFromUpload(

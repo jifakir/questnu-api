@@ -101,12 +101,12 @@ export class AuthService {
     return this.issueTokens(user);
   }
 
-  private issueTokens(user: UserDocument) {
+  private async issueTokens(user: UserDocument) {
     const sub = user._id.toString();
     const payload = { sub, email: user.email, role: user.role };
     return {
       access_token: this.jwtService.sign(payload),
-      user: this.usersService.toAuthUserSummary(user),
+      user: await this.usersService.summarizeUser(user),
     };
   }
 }
