@@ -6,6 +6,9 @@ export enum AcademicDraftStatus {
   Ready = 'ready',
 }
 
+/** Course list from an obsolete National University syllabus. */
+export const OLD_SYLLABUS_TAG = 'old';
+
 export enum QuestionType {
   Mcq = 'mcq',
   Short = 'short',

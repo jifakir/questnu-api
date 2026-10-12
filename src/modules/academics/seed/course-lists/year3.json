@@ -1,0 +1,2045 @@
+[
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231201",
+    "title": "Classical Prose",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231203",
+    "title": "Modern Prose",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231205",
+    "title": "Communicative Arabic- III",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231207",
+    "title": "History of Arabic Literature (1258-1798 AD.)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231209",
+    "title": "Ilmul Balagah and Ilmul Arud",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231211",
+    "title": "History of Islam (570-750 AD.)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231213",
+    "title": "Arabic Philology and Arabic Literary Criticism (Theoretical)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "3",
+    "code": "231215",
+    "title": "Muslim philosophy-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231001",
+    "title": "History of Bangla Literature-II, First part of Modern AGE (1801-1947)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231003",
+    "title": "Poetry of Ancient and Medieval AGE",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231005",
+    "title": "Bangla Short Story-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231007",
+    "title": "Theory of Folklore and Bangla Folk Literature",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231009",
+    "title": "Literary forms, Literary principles (Theory Rasa), Ornamentation, Rhythm",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231011",
+    "title": "Bangla Prose-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231013",
+    "title": "Bangla Comedy and Literature of Traveling",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "3",
+    "code": "231015",
+    "title": "Bangla Novel-2",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231101",
+    "title": "Elizabethan and Jacobean Drama",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231103",
+    "title": "16th and 17th Century Poetry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231105",
+    "title": "17th and 18th Century Non-Fictional Prose",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231107",
+    "title": "Restoration and Eighteenth Century Fiction",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231109",
+    "title": "Restoration and Eighteenth Century Poetry and Drama",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231111",
+    "title": "Victorian Poetry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231113",
+    "title": "Introduction to Literary Criticism (Up to Romantic Period)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "3",
+    "code": "231115",
+    "title": "Introduction to Linguistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231501",
+    "title": "History of Bengal, 1765-1905",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231503",
+    "title": "History of South Asia, 1757-1857",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231505",
+    "title": "History of West Asia, 1560-1914",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231507",
+    "title": "History of United States, 1776-1860",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231509",
+    "title": "History of England, 1485 to 1945",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231511",
+    "title": "History of Africa Since Colonial Period",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231513",
+    "title": "History of Europe, 1453-1815",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "3",
+    "code": "231515",
+    "title": "Far East and South-East Asia in Modern Times",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231601",
+    "title": "History of the Muslims in Persia and Central Asia (13th – 18th century)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231603",
+    "title": "History of the Ottomans (upto 1924)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231605",
+    "title": "History of Bengal (1757-1947)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231607",
+    "title": "History of Modern Europe (Since 1789)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231609",
+    "title": "Muslim Minorities in the Contemporary World",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231611",
+    "title": "History of Muslim Administration (570-1258)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231613",
+    "title": "History of World Civilizations",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "3",
+    "code": "231615",
+    "title": "Development of Religious Principles, Institutions, Literature and Science in Islam.",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231801",
+    "title": "Study of al-Tafsir",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231803",
+    "title": "Principles and History of Tafsir Literature",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231805",
+    "title": "Muslim Philosophy and Philosophers",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231807",
+    "title": "Sufism and some Prominent Sufis and their Contribution",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231809",
+    "title": "Economic System in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231811",
+    "title": "Study of Islamic Law, Personal Law and Law of Inheritance in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231813",
+    "title": "Ethics and Values in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "3",
+    "code": "231815",
+    "title": "History of Muslim World",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233801",
+    "title": "Information Networking and Resource Sharing",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233803",
+    "title": "Database Design and Application",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233805",
+    "title": "Documentation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233807",
+    "title": "International and Comparative Librarianship",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233809",
+    "title": "Research Methodology and User Studies",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233811",
+    "title": "Automation of Library and Information Centres",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233813",
+    "title": "Indexing and Abstracting",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "3",
+    "code": "233815",
+    "title": "Information and Communication",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231701",
+    "title": "Ancient Philosophical Classics : Plato and Aristotle",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231703",
+    "title": "Modern Philosophical Classics : Hume and Kant",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231705",
+    "title": "Symbolic Logic",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231707",
+    "title": "Moral Philosophy of Immanuel Kant and J.S. Mill",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231709",
+    "title": "Philosophy of the Bangalees : Ancient and Medieval",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231711",
+    "title": "Muslim Philosophers",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231713",
+    "title": "Indian Philosophy : Theistic School",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "3",
+    "code": "231715",
+    "title": "Philosophy of Education",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231301",
+    "title": "Sanskrit Grammar- I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231303",
+    "title": "Vedic Literature and Grammar",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231305",
+    "title": "Sanskrit Drama (Kalidasa and Pre-Kalidasa)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231307",
+    "title": "Vedic and Sanskrit Prosody",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231309",
+    "title": "Linguistics and Sanskrit Philology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231311",
+    "title": "Indian Philosophy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231313",
+    "title": "Ancient Indian History and Culture",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "3",
+    "code": "231315",
+    "title": "Manuscript Studies",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232501",
+    "title": "Audit and Assurance",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232503",
+    "title": "Advanced Accounting-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232505",
+    "title": "Cost Accounting",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232507",
+    "title": "Management Accounting (In English)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232509",
+    "title": "Business and Commercial Laws",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232511",
+    "title": "Entrepreneurship",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232513",
+    "title": "Financial Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "3",
+    "code": "232515",
+    "title": "Banking and Insurance Theories, Laws and Accounts",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232601",
+    "title": "Operations Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232603",
+    "title": "Business Statistics (In English)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232605",
+    "title": "Organizational Behavior",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232607",
+    "title": "Taxation in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232609",
+    "title": "Insurance & Risk Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232611",
+    "title": "Company Law",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232613",
+    "title": "Management Accounting (In English)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "3",
+    "code": "232615",
+    "title": "Marketing Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232301",
+    "title": "Principles of Marketing-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232303",
+    "title": "Organizational Behavior",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232305",
+    "title": "Financial Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232307",
+    "title": "Business Statistics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232309",
+    "title": "Advertising & Promotion",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232311",
+    "title": "Legal Aspects of Marketing",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232313",
+    "title": "Macro Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "3",
+    "code": "232315",
+    "title": "Taxation in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232901",
+    "title": "Metabolism of Lipids and Nitrogenous Compounds",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232903",
+    "title": "Molecular Biology-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232905",
+    "title": "Molecular Genetics & Clinical Biochemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232907",
+    "title": "Microbiology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232909",
+    "title": "Human Physiology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232911",
+    "title": "Human Nutrition",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232913",
+    "title": "Endocrinology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "3",
+    "code": "232914",
+    "title": "Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233001",
+    "title": "Gymnosperm, Paleobotany and Palynology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233003",
+    "title": "Plant Physiology and Plant Nutrition",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233005",
+    "title": "Plant Biochemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233007",
+    "title": "Ecology and Environmental Science",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233009",
+    "title": "Plant Pathology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233011",
+    "title": "Cytology and Cytogenetics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233013",
+    "title": "Genetics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "3",
+    "code": "233014",
+    "title": "Practical-III",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232801",
+    "title": "Physical Chemistry-III",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232803",
+    "title": "Stereochemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232805",
+    "title": "Advanced Concepts of Atomic Structure and Chemical Bonding",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232807",
+    "title": "Coordination Chemistry and Organometallic Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232809",
+    "title": "Fundamentals of Analytical Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232811",
+    "title": "Industrial Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232813",
+    "title": "Agricultural Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232814",
+    "title": "Physical Chemistry Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "3",
+    "code": "232816",
+    "title": "Organic Chemistry Practical (Detection & Preparation)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234401",
+    "title": "Integrated Coastal Zone and Floodplain Managements",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234403",
+    "title": "Ecology and Biodiversity",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234405",
+    "title": "Environmental and Social Impact Assessment (EIA and SIA)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234407",
+    "title": "Environmental Toxicology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234409",
+    "title": "Remote Sensing and GIS",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234411",
+    "title": "Geography and Geology of the Bengal Basin",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234413",
+    "title": "Hydrology and Water Resources",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "3",
+    "code": "234414",
+    "title": "Laboratory and Field work on Environmental Sciences",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233201",
+    "title": "Environmental Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233203",
+    "title": "Soil and Biogeography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233205",
+    "title": "Geography of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233207",
+    "title": "World Regional Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233209",
+    "title": "Cultural Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233211",
+    "title": "Population Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233213",
+    "title": "Quantitative Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "3",
+    "code": "233214",
+    "title": "Practical–III",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233501",
+    "title": "Meal Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233503",
+    "title": "Child Behaviour and Guidance",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233505",
+    "title": "History Art Culture of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233507",
+    "title": "Textile Design and Weaving",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233509",
+    "title": "Human Nutrition and Dietetics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233511",
+    "title": "Environment, Ecology and Household Equipments",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233513",
+    "title": "Family and Child Welfare in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "3",
+    "code": "233514",
+    "title": "Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233701",
+    "title": "Abstract Algebra",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233703",
+    "title": "Real Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233705",
+    "title": "Numerical Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233707",
+    "title": "Complex Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233709",
+    "title": "Differential Geometry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233711",
+    "title": "Mechanics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233713",
+    "title": "Linear Programming",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "3",
+    "code": "233714",
+    "title": "Math Lab (Practical)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232701",
+    "title": "Atomic & Molecular Physics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232703",
+    "title": "Quantum Mechanics-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232705",
+    "title": "Computer Fundamentals and Numerical Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232707",
+    "title": "Electronics-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232709",
+    "title": "Nuclear Physics-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232711",
+    "title": "Solid State Physics-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232713",
+    "title": "Mathematical Physics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "3",
+    "code": "232714",
+    "title": "Physics Practical-III",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233301",
+    "title": "Pedology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233303",
+    "title": "Soil Physics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233305",
+    "title": "Soil Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233307",
+    "title": "Soil Microbiology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233309",
+    "title": "Soil Fertility and Plant Nutrition",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233311",
+    "title": "Environmental Pollutions and Waste Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233313",
+    "title": "Soil and Plant Biochemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "3",
+    "code": "233314",
+    "title": "Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233601",
+    "title": "Sampling Distribution",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233603",
+    "title": "Statistical Inference",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233605",
+    "title": "Regression Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233607",
+    "title": "Design of Experiments",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233609",
+    "title": "Applied Statistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233611",
+    "title": "Introduction to computer and SPSS",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233612",
+    "title": "Lab 5: Statistical Inference",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233614",
+    "title": "Lab 6: Regression Analysis",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233616",
+    "title": "Lab 7: Design of Experiments",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "3",
+    "code": "233618",
+    "title": "Lab 8: Applied Statistics",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233101",
+    "title": "Evolution, Palaeontology and Zoogeography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233103",
+    "title": "Ecology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233105",
+    "title": "Genetics and Animal Breeding",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233107",
+    "title": "Developmental Biology and Ethology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233109",
+    "title": "Human Physiology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233111",
+    "title": "Systematics, Demography and Family Planning",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233113",
+    "title": "Cell and Molecular Biology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "3",
+    "code": "233114",
+    "title": "Zoology Practical-III",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234001",
+    "title": "Anthropological Theory-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234003",
+    "title": "Political Anthropology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234005",
+    "title": "Peasant Society",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234007",
+    "title": "Religion and Anthropology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234009",
+    "title": "Environmental Anthropology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234011",
+    "title": "Gender Issues",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234013",
+    "title": "Ethnic Identity and Nationalism",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "3",
+    "code": "234015",
+    "title": "Reading Ethnographic Texts",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232201",
+    "title": "Intermediate Macroeconomics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232203",
+    "title": "Statistics for Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232205",
+    "title": "Studies on Bangladesh Economy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232207",
+    "title": "Development of Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232209",
+    "title": "International Economics-I",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232211",
+    "title": "Public Finance",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232213",
+    "title": "Urban Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "3",
+    "code": "232215",
+    "title": "Agricultural and Rural Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231901",
+    "title": "Political and Constitutional Development in Bangladesh (1971 to date)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231903",
+    "title": "Fundamentals of International Politics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231905",
+    "title": "Government and Politics in South Asia: India, Pakistan, Nepal and SriLanka",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231907",
+    "title": "Approaches to the Study of Politics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231909",
+    "title": "Introduction to Peace and Conflict Studies",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231911",
+    "title": "Public Administration in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231913",
+    "title": "Research Methodology and Statistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "3",
+    "code": "231915",
+    "title": "Political Sociology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232101",
+    "title": "Social Work Methods: Case work and Group work",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232103",
+    "title": "Theories in Social Work Practice",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232105",
+    "title": "Voluntarism and NGOs in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232107",
+    "title": "Working with the Poor: Policy and Practice",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232109",
+    "title": "Project Planning and Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232111",
+    "title": "Population Issues, Policy Planning and Services",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232113",
+    "title": "Human Rights, Social Justice and Social Work",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "3",
+    "code": "232115",
+    "title": "Crime and Society",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232001",
+    "title": "Classical Sociological Theory",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232003",
+    "title": "Rural Sociology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232005",
+    "title": "Sociology of Religion",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232007",
+    "title": "Social Inequality",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232009",
+    "title": "Societies and Communities",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232011",
+    "title": "Social Structure of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232013",
+    "title": "Urban Sociology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "3",
+    "code": "232015",
+    "title": "Social Psychology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  }
+]

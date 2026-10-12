@@ -15,7 +15,19 @@ export class College {
   nameBn: string;
 
   @Prop({ trim: true, default: '' })
+  email: string;
+
+  @Prop({ trim: true, default: '' })
+  address: string;
+
+  @Prop({ trim: true, default: '' })
+  upazilla: string;
+
+  @Prop({ trim: true, default: '' })
   district: string;
+
+  @Prop({ trim: true, default: '' })
+  division: string;
 
   @Prop({ type: Number, default: 0 })
   sortOrder: number;

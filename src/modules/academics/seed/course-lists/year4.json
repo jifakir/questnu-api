@@ -1,0 +1,2792 @@
+[
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241201",
+    "title": "Modern poetry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241203",
+    "title": "History of Arabic Literature (1789-Till now)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241205",
+    "title": "Arabic Literary Criticism",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241207",
+    "title": "Modern prose (Novel and Drama)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241209",
+    "title": "`Ilmul Kalam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241211",
+    "title": "Communicative Arabic-IV",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241213",
+    "title": "History of Islam (750-1258AD)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241215",
+    "title": "Studies of Arabic in Bengal",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241217",
+    "title": "Muslim Philosophy-2",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "arabic",
+    "yearId": "4",
+    "code": "241218",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241001",
+    "title": "History of Bangla Literature-3 (Development of Bangladeshi Literature Since 1947 to 2000)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241003",
+    "title": "Bangla Novel-3",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241005",
+    "title": "Western Literary Theories and Methods of Literary Criticism",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241007",
+    "title": "Bangla Drama-2",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241009",
+    "title": "Classical Literature (Translated)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241011",
+    "title": "Bangla Short-Stories-2",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241013",
+    "title": "Bangla Poetry-3",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241015",
+    "title": "Phonetics and Linguistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241017",
+    "title": "Literature on Bangladesh Liberation War",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "bangla",
+    "yearId": "4",
+    "code": "241018",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241101",
+    "title": "Nineteenth Century Novel",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241103",
+    "title": "Twentieth Century Poetry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241105",
+    "title": "Modern Drama",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241107",
+    "title": "Twentieth Century Novel",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241109",
+    "title": "American Poetry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241111",
+    "title": "American Literature: Fiction and American Literature: Fiction and Drama",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241113",
+    "title": "Classics in Translation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241115",
+    "title": "Literary Criticism (From Victorian to Modern Age)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241120",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241117",
+    "title": "Continental Literature (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "english",
+    "yearId": "4",
+    "code": "241119",
+    "title": "Approaches and Methods of Language Teaching (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241501",
+    "title": "History of South Asia 1857-1947",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241503",
+    "title": "History of Bengal 1905-1947",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241505",
+    "title": "Constitutional History of India under British Colonial Rule 1773-1947",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241507",
+    "title": "West Asia in Modern Times upto 1945",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241509",
+    "title": "History of Russia and Soviet Union upto 1945",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241511",
+    "title": "History of United States 1861-1945",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241513",
+    "title": "History of Europe 1815-1939",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241515",
+    "title": "Bangladesh: National Culture and Heritage",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241517",
+    "title": "History of Resistance Movement and Subalterns (Selected Topics)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "history",
+    "yearId": "4",
+    "code": "241518",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241601",
+    "title": "Muslim Historiography (Khilafat; Sultanat and Mughal India)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241603",
+    "title": "Development of Philosophy and Sects in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241605",
+    "title": "Development of Muslim Art and Painting",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241607",
+    "title": "Development of Muslim Architecture and Archeology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241609",
+    "title": "History of Muslim Administration in India (Sultanat and Mughal)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241611",
+    "title": "Economic History of Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241613",
+    "title": "History of the Muslims of Southeast Asia (upto 1824)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241615",
+    "title": "History of the Modern Muslim States",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241617",
+    "title": "Political History of Bangladesh since 1971",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_history_culture",
+    "yearId": "4",
+    "code": "241618",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241801",
+    "title": "Sayings of the Holy Prophet (SM.) In the Practical Life",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241803",
+    "title": "Principles and History of Hadith Literature",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241805",
+    "title": "Principles and History of Islamic Jurisprudence",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241807",
+    "title": "Political System in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241809",
+    "title": "Study of Major Religions of the World",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241811",
+    "title": "Banking and Insurance in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241813",
+    "title": "Muslims' Contribution to Science & Technology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241815",
+    "title": "Islamic Civilization",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241817",
+    "title": "Human Rights in Islam",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "islamic_studies",
+    "yearId": "4",
+    "code": "241818",
+    "title": "Viva-Voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243801",
+    "title": "Organization of Knowledge (Classification Theory)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243803",
+    "title": "Organization of Knowledge (Cataloguing Theory)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243805",
+    "title": "Systems Analysis and Design",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243807",
+    "title": "New Technologies Current Trends in Information Systems",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243809",
+    "title": "Information Production Marketing and Public Relation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243811",
+    "title": "Information Retrieval Techniques",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243813",
+    "title": "Advanced Bibliography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243814",
+    "title": "Organization of Knowledge (Classification Practical)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243816",
+    "title": "Organization of Knowledge (Cataloguing Practical)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243820",
+    "title": "Computer Applications in Libraries (Practical)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "library_science",
+    "yearId": "4",
+    "code": "243822",
+    "title": "Viva Voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241701",
+    "title": "Contemporary Western Philosophy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241703",
+    "title": "Marxist Philosophy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241705",
+    "title": "Aesthetics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241707",
+    "title": "Political Philosophy: Ancient and Medieval",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241709",
+    "title": "Philosophy of the Bangalees: Modern and Contemporary",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241711",
+    "title": "Philosophy of Mind",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241713",
+    "title": "Social Philosophers",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241715",
+    "title": "Meta Ethics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241717",
+    "title": "Philosophy of Religion",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "philosophy",
+    "yearId": "4",
+    "code": "241718",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241301",
+    "title": "Sanskrit Grammar-2",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241303",
+    "title": "Sanskrit Epic",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241305",
+    "title": "Purana and Philosophical Poem",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241307",
+    "title": "Post-Kalidasa Sanskrit Drama",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241309",
+    "title": "Sanskrit Ethical Poem",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241311",
+    "title": "Sanskrit Historical Poem",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241313",
+    "title": "Ancient Indian Politics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241315",
+    "title": "Archaeology of Bengal",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241317",
+    "title": "Essay, Composition and Translation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sanskrit",
+    "yearId": "4",
+    "code": "241318",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242501",
+    "title": "Accounting Theory",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242503",
+    "title": "Advanced Auditing & Professional Ethics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242505",
+    "title": "Accounting Information Systems",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242507",
+    "title": "Organizational Behavior",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242509",
+    "title": "Corporate Law and Practices",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242511",
+    "title": "Working Capital Management And Financial Statement Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242513",
+    "title": "Advanced Accounting-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242515",
+    "title": "Investment Analysis and Portfolio Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242517",
+    "title": "Research Methodology (In English)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "accounting",
+    "yearId": "4",
+    "code": "242518",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242401",
+    "title": "International Trade and Finance",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242403",
+    "title": "Public Finance and Taxation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242405",
+    "title": "Financial Market and Institutions",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242407",
+    "title": "Comparative Financial System",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242409",
+    "title": "Human Resource Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242411",
+    "title": "Business Research Methodology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242413",
+    "title": "SME and Micro Finance",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242415",
+    "title": "E-Banking & E-Commerce",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242417",
+    "title": "Central Banking",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "finance_and_banking",
+    "yearId": "4",
+    "code": "242418",
+    "title": "Viva-Voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242601",
+    "title": "Bank Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242603",
+    "title": "Financial Management (In English)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242605",
+    "title": "Supply Chain Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242607",
+    "title": "Industrial Relations",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242609",
+    "title": "Project Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242611",
+    "title": "International Trade",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242613",
+    "title": "Investment Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242615",
+    "title": "Bangladesh Economy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242617",
+    "title": "Entrepreneurship",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "management",
+    "yearId": "4",
+    "code": "242618",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242301",
+    "title": "Marketing Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242303",
+    "title": "Human Resource Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242305",
+    "title": "International Business",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242307",
+    "title": "Consumer Behavior",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242309",
+    "title": "Sales Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242311",
+    "title": "Brand Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242313",
+    "title": "Entrepreneurship Development",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242315",
+    "title": "Bangladesh Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242317",
+    "title": "Marketing Research",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "marketing",
+    "yearId": "4",
+    "code": "242318",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242901",
+    "title": "Cell Biology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242903",
+    "title": "Molecular Biology-III",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242905",
+    "title": "Plant Biochemistry & Biotechnology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242907",
+    "title": "Immunology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242909",
+    "title": "Industrial Biotechnology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242911",
+    "title": "Virology & Cancer Biology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242913",
+    "title": "Biochemistry of Natural Products",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242915",
+    "title": "Biostatistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242916",
+    "title": "Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "biochemistry",
+    "yearId": "4",
+    "code": "242918",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243001",
+    "title": "Agronomy and Horticulture",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243003",
+    "title": "Economic Botany, Ethnobotany and Pharmacognosy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243005",
+    "title": "Limnology and Aquaculture",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243007",
+    "title": "Biodiversity and Evolution",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243009",
+    "title": "Plant Breeding",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243011",
+    "title": "Molecular Biology and Bioinformatics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243013",
+    "title": "Biostatistics and Research Methodology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243015",
+    "title": "Biotechnology and Genetic Engineering",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243016",
+    "title": "Practical Paper-IV",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "botany",
+    "yearId": "4",
+    "code": "243018",
+    "title": "Viva-Voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242801",
+    "title": "Physical Chemistry-IV",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242803",
+    "title": "Selected Topics in Organic Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242805",
+    "title": "Selected Topics in Inorganic Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242807",
+    "title": "Nuclear Chemistry",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242809",
+    "title": "Organic Polymers",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242811",
+    "title": "Reaction Mechanism",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242813",
+    "title": "Separation Techniques",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242815",
+    "title": "Chemical Spectroscopy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242816",
+    "title": "Practical Chemistry (Organic)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242818",
+    "title": "Practical Chemistry (Industrial)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "chemistry",
+    "yearId": "4",
+    "code": "242820",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244401",
+    "title": "Research Methodology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244403",
+    "title": "Climate Change",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244405",
+    "title": "Environmental Hazards and Disaster Managements",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244407",
+    "title": "Water Resources Management in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244409",
+    "title": "Waste Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244411",
+    "title": "Environmental Laws, Protocols and Ethics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244413",
+    "title": "Instrumental Techniques in Environmental Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244415",
+    "title": "Energy, Environment and Sustainable Development: Bangladesh Perspective",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244417",
+    "title": "Agriculture and Environment",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "environment_science",
+    "yearId": "4",
+    "code": "244418",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243201",
+    "title": "Geographical Thoughts and Concepts",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243203",
+    "title": "Oceanography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243205",
+    "title": "Geography of Disasters",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243207",
+    "title": "Political Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243209",
+    "title": "Agricultural Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243211",
+    "title": "Geography of South Asia",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243213",
+    "title": "Urban Geography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243215",
+    "title": "Principles of Remote Sensing and Geographic Information System",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243216",
+    "title": "Practical-IV",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "geography_and_environment",
+    "yearId": "4",
+    "code": "243218",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243501",
+    "title": "Food Science and Technology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243503",
+    "title": "Counselling in Family",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243505",
+    "title": "Family Resource Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243507",
+    "title": "Textile Manufacturing and Merchandising",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243509",
+    "title": "Community Nutrition and Public Health",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243511",
+    "title": "The Child with Special Needs",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243513",
+    "title": "Art and Craft: Income Generating Sources for Women",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243515",
+    "title": "Home Economics Education",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243516",
+    "title": "Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "home_economics",
+    "yearId": "4",
+    "code": "243518",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243701",
+    "title": "Theory of Numbers",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243703",
+    "title": "Topology & Functional Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243705",
+    "title": "Methods of Applied Mathematics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243707",
+    "title": "Tensor Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243709",
+    "title": "Partial Differential equations",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243711",
+    "title": "Hydrodynamics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243718",
+    "title": "Math Lab (Practical)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243720",
+    "title": "Viva-Voce (Comprehensive)",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243713",
+    "title": "Discrete Mathematics (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243715",
+    "title": "Astronomy (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "mathematics",
+    "yearId": "4",
+    "code": "243717",
+    "title": "Mathematical Modeling in Biology (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242701",
+    "title": "Nuclear Physics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242703",
+    "title": "Solid State Physics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242705",
+    "title": "Quantum Mechanics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242707",
+    "title": "Electronics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242709",
+    "title": "Classical Electrodynamics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242711",
+    "title": "Statistical Mechanics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242713",
+    "title": "Computer Application and Programming",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242715",
+    "title": "Theory of Relativity and Cosmology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242716",
+    "title": "Physics Practical-IV",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "physics",
+    "yearId": "4",
+    "code": "242718",
+    "title": "Viva-Voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243401",
+    "title": "Theories of Motivation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243403",
+    "title": "Theories of Learning",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243405",
+    "title": "Theories of Perception",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243407",
+    "title": "Theories of Personality",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243409",
+    "title": "Educational Psychology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243411",
+    "title": "Industrial-Organizational Psychology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243413",
+    "title": "Counseling Psychology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243415",
+    "title": "Clinical Psychology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243416",
+    "title": "Practical Research Project",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "psychology",
+    "yearId": "4",
+    "code": "243418",
+    "title": "Viva voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243301",
+    "title": "Soil Survey and Land Evaluation",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243303",
+    "title": "Soil Conservation and Soil Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243305",
+    "title": "Soil classification and Soils of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243307",
+    "title": "Irrigation and Drainage",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243309",
+    "title": "Soil Ecology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243311",
+    "title": "Principles of Agronomy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243313",
+    "title": "Fertilizers and Agricultural Statistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243315",
+    "title": "Crops of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243316",
+    "title": "Practical",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "soil_science",
+    "yearId": "4",
+    "code": "243318",
+    "title": "Viva-Voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243601",
+    "title": "Multivariate Analysis",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243603",
+    "title": "Advance Sampling Technique",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243605",
+    "title": "Demography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243607",
+    "title": "Computer Programming (FORTRAN & R)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243609",
+    "title": "Stochastic Process",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243611",
+    "title": "Econometrics (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243613",
+    "title": "Operational Research and Research Methodology (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243615",
+    "title": "Epidemiology & Biostatistics (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243616",
+    "title": "Lab: 9 Multivariate Analysis",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243618",
+    "title": "Lab: 10 Advance Sampling Technique",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243620",
+    "title": "Lab: 11 Econometrics",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243622",
+    "title": "Lab: 12 Operational Research & Demography",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243624",
+    "title": "Lab: 13 Epidemiology & Biostatistics",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "statistics",
+    "yearId": "4",
+    "code": "243626",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243101",
+    "title": "Applied and Economic Zoology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243103",
+    "title": "Genetic Engineering and Biotechnology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243105",
+    "title": "Biostatistics and Research Methodology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243107",
+    "title": "Microbiology and Radiation Biology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243109",
+    "title": "Parasitology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243111",
+    "title": "Entomology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243113",
+    "title": "Fisheries Biology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243115",
+    "title": "Wildlife Biology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243116",
+    "title": "Zoology Practical-IV",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "zoology",
+    "yearId": "4",
+    "code": "243118",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244001",
+    "title": "Contemporary Anthropological Theory",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244003",
+    "title": "Research Methods-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244005",
+    "title": "Anthropology of Development",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244007",
+    "title": "Medical Anthropology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244009",
+    "title": "Urban Anthropology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244011",
+    "title": "South Asian Society and Culture",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244013",
+    "title": "Language, Society and Culture",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244015",
+    "title": "Social Inequality",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244017",
+    "title": "Emerging Issues in Anthropology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "anthropology",
+    "yearId": "4",
+    "code": "244018",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242201",
+    "title": "Money, Banking and Finance",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242203",
+    "title": "International Economics-II",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242205",
+    "title": "Research Methodology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242207",
+    "title": "Industrial Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242209",
+    "title": "Environmental and Resource Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242211",
+    "title": "Population and Health Economics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242213",
+    "title": "Economic Thought",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242222",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242215",
+    "title": "Econometrics (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242217",
+    "title": "Economic Systems and Development Patterns (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242219",
+    "title": "Economics of Planning (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "economics",
+    "yearId": "4",
+    "code": "242221",
+    "title": "Islamic Economics (Optional)",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241901",
+    "title": "Political Theories: Changes and Continuities",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241903",
+    "title": "Local Government and Rural Development in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241905",
+    "title": "Introduction to Public Policy",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241907",
+    "title": "Government and Politics in East Asia: China, Japan and South Korea",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241909",
+    "title": "Environment and Development",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241911",
+    "title": "Foreign Relations of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241913",
+    "title": "Legislative Process in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241915",
+    "title": "Globalization, Regionalism and International Financial Institutions",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241917",
+    "title": "Modern Political Thought",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "political_science",
+    "yearId": "4",
+    "code": "241918",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242101",
+    "title": "Rural and Urban Community Development",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242103",
+    "title": "Climate Change: Issues and Disaster Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242105",
+    "title": "Human Resource Management",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242107",
+    "title": "Social Research and Statistics",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242109",
+    "title": "Social Services in Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242111",
+    "title": "Social Work and Globalization",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242113",
+    "title": "Public Health and Social Work",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242115",
+    "title": "Social Action, Social Legislation and Social Work",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242117",
+    "title": "Field Work Education",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "social_work",
+    "yearId": "4",
+    "code": "242118",
+    "title": "Field Practicum+Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242001",
+    "title": "Gender, Society and Development",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242003",
+    "title": "Sociology of Development",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242005",
+    "title": "Social Demography",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242007",
+    "title": "Sociology of Environment",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242009",
+    "title": "Sociology of Bangladesh",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242011",
+    "title": "Social Change",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242013",
+    "title": "Deviance and Crime",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242015",
+    "title": "Industrial Sociology",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242017",
+    "title": "Peasant Society",
+    "marks": 100,
+    "credits": 4,
+    "classHours": 60
+  },
+  {
+    "departmentId": "sociology",
+    "yearId": "4",
+    "code": "242018",
+    "title": "Viva-voce",
+    "marks": 50,
+    "credits": 2,
+    "classHours": 30
+  }
+]

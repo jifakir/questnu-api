@@ -23,27 +23,22 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+QuestNU NestJS API. Secrets stay in a local `.env` and are not committed.
 
 ## Project setup
 
-This workspace uses [pnpm](https://pnpm.io). From the repository root:
-
 ```bash
 pnpm install
+cp .env.example .env
 ```
 
-To install only the API package: `pnpm --filter api install`
+Fill `.env` with a real `JWT_SECRET`, MongoDB URI, and Firebase service-account values. Do not commit `.env`, `uploads/`, or any `client_secret*.json`.
+
+College names used by student profiles are seeded from `data/college-list.json` on startup.
 
 ## Compile and run the project
 
-From the repo root:
-
 ```bash
-# watch mode (API)
-pnpm api:dev
-
-# or from this directory
 pnpm run start:dev
 ```
 

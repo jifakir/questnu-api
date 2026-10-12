@@ -17,17 +17,35 @@ export class UpdateProfileDto {
   @MaxLength(32)
   whatsappNumber?: string;
 
-  /** Send empty string to clear. */
+  /** NU college code. Send empty string to clear. */
+  @IsOptional()
+  @IsString()
+  @MaxLength(16)
+  collegeCode?: string;
+
+  /** Legacy free-text name. Prefer collegeCode. */
   @IsOptional()
   @IsString()
   @MaxLength(160)
   collegeName?: string;
 
-  /** Send empty string to clear. */
+  /** Catalog department slug. Send empty string to clear. */
+  @IsOptional()
+  @IsString()
+  @MaxLength(80)
+  departmentId?: string;
+
+  /** Display name. Send empty string to clear. */
   @IsOptional()
   @IsString()
   @MaxLength(160)
   department?: string;
+
+  /** Catalog year slug. Send empty string to clear. */
+  @IsOptional()
+  @IsString()
+  @MaxLength(40)
+  yearId?: string;
 
   /** Year the student is currently reading. Send empty string to clear. */
   @IsOptional()

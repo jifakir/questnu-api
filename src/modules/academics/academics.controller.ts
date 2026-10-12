@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  NotFoundException,
   Body,
   Controller,
   Delete,
@@ -23,12 +24,16 @@ import {
   CreateQuestionDto,
   CreateSubjectDto,
   CreateYearDto,
+  LinkAcademicCourseDto,
+  UpdateAcademicCourseDto,
   UpdateCollegeDto,
   UpdateDepartmentDto,
   UpdateQuestionDto,
   UpdateSubjectDto,
   UpdateYearDto,
 } from './dto/academic.dto';
+import { AcademicDraftStatus } from './academic.constants';
+import { CoursesService } from './courses.service';
 import { QuestionsService } from './questions.service';
 import { CatalogSeedService } from './seed/catalog-seed.service';
 import { StructureService } from './structure.service';
@@ -41,6 +46,7 @@ export class AcademicsController {
   constructor(
     private readonly structure: StructureService,
     private readonly subjects: SubjectsService,
+    private readonly courses: CoursesService,
     private readonly questions: QuestionsService,
     private readonly catalogSeed: CatalogSeedService,
   ) {}
@@ -121,6 +127,74 @@ export class AcademicsController {
   @Delete('years/:slug')
   removeYear(@Param('slug') slug: string) {
     return this.structure.removeYear(slug);
+  }
+
+  @Get('courses')
+  listCourses() {
+    return this.courses.list();
+  }
+
+  @Post('courses/upload')
+  @UseInterceptors(
+    FileInterceptor('file', { limits: { fileSize: 15 * 1024 * 1024 } }),
+  )
+  uploadCourse(
+    @UploadedFile() file: Express.Multer.File | undefined,
+    @Body('yearId') yearId?: string,
+    @Body('departmentIds') departmentIds?: string,
+    @Body('status') status?: string,
+  ) {
+    if (!file?.buffer?.length) {
+      throw new BadRequestException('Upload a JSON course file');
+    }
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(file.buffer.toString('utf8'));
+    } catch {
+      throw new BadRequestException('File is not valid JSON');
+    }
+    let ids: string[] = [];
+    try {
+      const raw = departmentIds ? JSON.parse(departmentIds) : [];
+      ids = Array.isArray(raw) ? raw.map((id) => String(id)) : [];
+    } catch {
+      throw new BadRequestException('Choose at least one department');
+    }
+    return this.subjects.publishUpload(parsed, {
+      yearId: yearId ?? '',
+      departmentIds: ids,
+      status:
+        status === AcademicDraftStatus.Draft
+          ? AcademicDraftStatus.Draft
+          : AcademicDraftStatus.Ready,
+    });
+  }
+
+  @Delete('courses/:code')
+  removeCourse(@Param('code') code: string) {
+    return this.subjects.removeByCode(code);
+  }
+
+  @Post('courses/:code/link')
+  linkCourse(@Param('code') code: string, @Body() dto: LinkAcademicCourseDto) {
+    return this.subjects.linkStoredCourse(code, dto);
+  }
+
+  @Get('courses/:code')
+  async courseByCode(@Param('code') code: string) {
+    const course = await this.courses.findByCode(code);
+    if (!course) throw new NotFoundException('Course not found');
+    return course;
+  }
+
+  @Patch('courses/:code')
+  async updateCourse(
+    @Param('code') code: string,
+    @Body() dto: UpdateAcademicCourseDto,
+  ) {
+    const course = await this.courses.updateByCode(code, dto);
+    if (!course) throw new NotFoundException('Course not found');
+    return course;
   }
 
   @Get('subjects')

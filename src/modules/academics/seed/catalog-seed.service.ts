@@ -4,10 +4,16 @@ import { promises as fs } from 'fs';
 import { Model } from 'mongoose';
 import * as path from 'path';
 import { AcademicDraftStatus } from '../academic.constants';
-import { canonicalDepartmentId } from '../academic.util';
+import { hasSyllabusDetails, syllabusTags } from '../academic.util';
+import {
+  canonicalDepartmentId,
+  isCompulsoryCourseFolder,
+  isSharedCoursePlaceholder,
+} from '../academic.util';
 import { Subject, SubjectDocument } from '../schemas/subject.schema';
 import { STARTER_DEPARTMENTS } from './starter-catalog';
 import { StructureService } from '../structure.service';
+import { CoursesService } from '../courses.service';
 import { SubjectsService } from '../subjects.service';
 
 @Injectable()
@@ -17,6 +23,7 @@ export class CatalogSeedService implements OnModuleInit {
   constructor(
     private readonly structure: StructureService,
     private readonly subjects: SubjectsService,
+    private readonly courses: CoursesService,
     @InjectModel(Subject.name)
     private readonly subjectModel: Model<SubjectDocument>,
   ) {}
@@ -25,11 +32,36 @@ export class CatalogSeedService implements OnModuleInit {
     try {
       const result = await this.syncAppCatalog();
       this.logger.log(
-        `App catalog sync: +${result.subjects.created} subjects, ${result.subjects.skipped} already present, ${result.subjects.aligned?.introductions ?? 0} introductions, ${result.subjects.labFilled ?? 0} lab intros`,
+        `App catalog sync: +${result.subjects.created} subjects, ${result.subjects.skipped} already present, ${result.subjects.aligned?.introductions ?? 0} introductions, ${result.subjects.labFilled ?? 0} lab intros, +${result.structure.colleges?.created ?? 0} colleges`,
       );
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       this.logger.error(`App catalog sync failed: ${message}`);
+    }
+    try {
+      await this.subjects.purgeSharedCoursePlaceholders();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Could not remove compulsory-course departments: ${message}`);
+    }
+    try {
+      const seeded = await this.seedCalculatorCourseLists();
+      this.logger.log(
+        `Calculator course lists: +${seeded.created} courses, ${seeded.skipped} already present`,
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Calculator course list seed failed: ${message}`);
+    }
+    try {
+      const linked = await this.courses.syncFromSubjects();
+      const stripped = await this.courses.stripSubjectSyllabusCopies();
+      this.logger.log(
+        `Courses: ${linked.courses} unique codes from ${linked.subjects} papers, ${linked.links} department links, ${stripped.stripped} syllabus copies removed from offerings`,
+      );
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Course link sync failed: ${message}`);
     }
   }
 
@@ -57,19 +89,28 @@ export class CatalogSeedService implements OnModuleInit {
       files.flatMap((file) => (Array.isArray(file.raw) ? file.raw : [])),
     );
     const missing: unknown[] = [];
+    const sharedRows: unknown[] = [];
     let skipped = 0;
 
     for (const file of files) {
       const rows = Array.isArray(file.raw) ? file.raw : [];
-        const departmentId = this.firstString(rows, 'departmentId');
-        if (departmentId) {
-          const canonical = canonicalDepartmentId(departmentId);
-          const known = STARTER_DEPARTMENTS.find((dept) => dept.slug === canonical);
-          await this.structure.ensureDepartment(
-            canonical,
-            known?.name ?? file.folderName,
-          );
-        }
+      const departmentId = this.firstString(rows, 'departmentId');
+      const sharedFolder =
+        isCompulsoryCourseFolder(file.folderName) ||
+        (departmentId != null &&
+          isSharedCoursePlaceholder(canonicalDepartmentId(departmentId)));
+      if (sharedFolder) {
+        sharedRows.push(...rows);
+        continue;
+      }
+      if (departmentId) {
+        const canonical = canonicalDepartmentId(departmentId);
+        const known = STARTER_DEPARTMENTS.find((dept) => dept.slug === canonical);
+        await this.structure.ensureDepartment(
+          canonical,
+          known?.name ?? file.folderName,
+        );
+      }
       for (const row of rows) {
         const slug = this.rowSlug(row);
         if (!slug) {
@@ -81,6 +122,15 @@ export class CatalogSeedService implements OnModuleInit {
           continue;
         }
         missing.push(row);
+      }
+    }
+
+    for (const row of sharedRows) {
+      try {
+        await this.subjects.importAsSharedCourse(row, AcademicDraftStatus.Ready);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        this.logger.warn(`Shared course skipped: ${message}`);
       }
     }
 
@@ -105,6 +155,99 @@ export class CatalogSeedService implements OnModuleInit {
         aligned,
       },
     };
+  }
+
+  private async seedCalculatorCourseLists() {
+    await this.structure.ensureStarter();
+    let created = 0;
+    let skipped = 0;
+    for (const yearId of ['3', '4']) {
+      const rows = await this.readCourseList(yearId);
+      for (const row of rows) {
+        const slug = `${row.departmentId}-${row.code}`;
+        const exists = await this.subjectModel.exists({ slug }).exec();
+        if (exists) {
+          skipped += 1;
+          continue;
+        }
+        const offering = {
+          slug,
+          departmentId: row.departmentId,
+          yearId: row.yearId,
+          code: row.code,
+          title: row.title,
+          titleBn: '',
+          marks: row.marks,
+          credits: row.credits,
+          classHours: row.classHours,
+          status: AcademicDraftStatus.Ready,
+          tags: syllabusTags(false),
+        };
+        await this.subjectModel.create(offering);
+        await this.courses.upsertFromSubject(offering);
+        created += 1;
+      }
+    }
+    await this.markCoursesWithoutSyllabus();
+    return { created, skipped };
+  }
+
+  /** Old means the course has no syllabus details, whatever year it belongs to. */
+  private async markCoursesWithoutSyllabus() {
+    const rows = await this.subjectModel
+      .find()
+      .select({
+        _id: 1,
+        code: 1,
+        tags: 1,
+        introduction: 1,
+        description: 1,
+        labDetails: 1,
+        objectives: 1,
+        outcomes: 1,
+        prescribedTexts: 1,
+        outline: 1,
+        books: 1,
+      })
+      .lean()
+      .exec();
+    for (const row of rows) {
+      const tags = syllabusTags(hasSyllabusDetails(row), row.tags ?? []);
+      const current = [...(row.tags ?? [])].sort().join(',');
+      const next = [...tags].sort().join(',');
+      if (current !== next) {
+        await this.subjectModel.updateOne({ _id: row._id }, { $set: { tags } }).exec();
+      }
+    }
+  }
+
+  private async readCourseList(yearId: string) {
+    const name = `year${yearId}.json`;
+    const candidates = [
+      path.resolve(__dirname, 'course-lists', name),
+      path.resolve(process.cwd(), 'src/modules/academics/seed/course-lists', name),
+      path.resolve(process.cwd(), 'dist/src/modules/academics/seed/course-lists', name),
+    ];
+    for (const candidate of candidates) {
+      try {
+        const text = await fs.readFile(candidate, 'utf8');
+        const parsed = JSON.parse(text) as Array<{
+          departmentId: string;
+          yearId: string;
+          code: string;
+          title: string;
+          marks: number;
+          credits: number;
+          classHours: number;
+        }>;
+        if (!Array.isArray(parsed)) continue;
+        return parsed;
+      } catch {
+        /* try next */
+      }
+    }
+    this.logger.warn(`Course list not found: ${name}`);
+    return [];
   }
 
   private async findSyllabusRoot(): Promise<string | null> {

@@ -8,6 +8,7 @@ import { FirebaseModule } from './firebase/firebase.module';
 import { LmsModule } from './modules/lms/lms.module';
 import { ExamEvaluationModule } from './modules/exam-evaluation/exam-evaluation.module';
 import { AcademicsModule } from './modules/academics/academics.module';
+import { CgpaModule } from './modules/cgpa/cgpa.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { AcademicsModule } from './modules/academics/academics.module';
     LmsModule,
     ExamEvaluationModule,
     AcademicsModule,
+    CgpaModule,
   ],
 })
 export class AppModule {}

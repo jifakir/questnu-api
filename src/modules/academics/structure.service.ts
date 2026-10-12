@@ -4,9 +4,16 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { promises as fs } from 'fs';
 import { Model } from 'mongoose';
+import * as path from 'path';
 import { AcademicDraftStatus } from './academic.constants';
-import { assertSlug } from './academic.util';
+import {
+  assertSlug,
+  isCompulsoryCourseFolder,
+  isSharedCoursePlaceholder,
+  SHARED_COURSE_PLACEHOLDER_IDS,
+} from './academic.util';
 import type {
   CreateCollegeDto,
   CreateDepartmentDto,
@@ -16,7 +23,6 @@ import type {
   UpdateYearDto,
 } from './dto/academic.dto';
 import {
-  STARTER_COLLEGES,
   STARTER_DEPARTMENTS,
   STARTER_YEARS,
 } from './seed/starter-catalog';
@@ -61,10 +67,16 @@ export class StructureService {
       ]),
     ]);
     const totals = new Map(counts.map((row) => [row._id, row.count]));
-    return rows.map((row) => ({
-      ...row,
-      subjectCount: totals.get(row.slug) ?? 0,
-    }));
+    return rows
+      .filter(
+        (row) =>
+          !isSharedCoursePlaceholder(row.slug) &&
+          !isCompulsoryCourseFolder(row.name),
+      )
+      .map((row) => ({
+        ...row,
+        subjectCount: totals.get(row.slug) ?? 0,
+      }));
   }
 
   listYears() {
@@ -154,17 +166,84 @@ export class StructureService {
         sortOrder: item.sortOrder,
       })),
     );
-    const colleges = await this.insertMissing(
-      this.colleges,
-      STARTER_COLLEGES.map((item) => ({
-        slug: item.slug,
-        name: item.name,
-        district: item.district,
-        nameBn: '',
-        sortOrder: item.sortOrder,
-      })),
-    );
+    const colleges = await this.seedOfficialColleges();
     return { departments, years, colleges };
+  }
+
+  /** Insert official colleges that are not already stored. Does not overwrite edits. */
+  async seedCollegeList(
+    rows: Array<{
+      slug: string;
+      name: string;
+      email: string;
+      address: string;
+      upazilla: string;
+      district: string;
+      division: string;
+    }>,
+  ) {
+    const existing = new Set(
+      (await this.colleges.distinct('slug').exec()).map((slug) => String(slug)),
+    );
+    const missing = rows
+      .filter((row) => row.slug && !existing.has(row.slug))
+      .map((row) => ({ ...row, nameBn: '', sortOrder: 0 }));
+    if (missing.length) {
+      await this.colleges.insertMany(missing, { ordered: false });
+    }
+    return {
+      created: missing.length,
+      updated: 0,
+      unchanged: rows.length - missing.length,
+      total: rows.length,
+    };
+  }
+
+  async seedOfficialColleges() {
+    const file = await this.findCollegeList();
+    if (!file) {
+      return { created: 0, updated: 0, unchanged: 0, total: 0 };
+    }
+    const raw = JSON.parse(await fs.readFile(file, 'utf8')) as unknown;
+    if (!Array.isArray(raw)) {
+      return { created: 0, updated: 0, unchanged: 0, total: 0 };
+    }
+    const rows = raw.flatMap((item) => {
+      if (!item || typeof item !== 'object') return [];
+      const row = item as Record<string, unknown>;
+      const slug = String(row.college_code ?? '').trim().toLowerCase();
+      const name = String(row.college_name ?? '').trim();
+      if (!slug || !name) return [];
+      return [{
+        slug,
+        name,
+        email: String(row.email ?? '').trim(),
+        address: String(row.address ?? '').trim(),
+        upazilla: String(row.upazilla ?? '').trim(),
+        district: String(row.districts_name ?? '').trim(),
+        division: String(row.div_name ?? '').trim(),
+      }];
+    });
+    return this.seedCollegeList(rows);
+  }
+
+  private async findCollegeList(): Promise<string | null> {
+    const candidates = [
+      path.resolve(process.cwd(), 'data/college-list.json'),
+      path.resolve(__dirname, '../../../../data/college-list.json'),
+      path.resolve(__dirname, '../../../../../data/college-list.json'),
+      path.resolve(process.cwd(), 'college-list.json'),
+      path.resolve(process.cwd(), '../college-list.json'),
+    ];
+    for (const file of candidates) {
+      try {
+        await fs.access(file);
+        return file;
+      } catch {
+        /* try next */
+      }
+    }
+    return null;
   }
 
   async bootstrap() {
@@ -186,16 +265,7 @@ export class StructureService {
         sortOrder: item.sortOrder,
       })),
     );
-    const colleges = await this.upsertMany(
-      this.colleges,
-      STARTER_COLLEGES.map((item) => ({
-        slug: item.slug,
-        name: item.name,
-        district: item.district,
-        nameBn: '',
-        sortOrder: item.sortOrder,
-      })),
-    );
+    const colleges = await this.seedOfficialColleges();
     return { departments, years, colleges };
   }
 
@@ -245,7 +315,7 @@ export class StructureService {
     const used = await this.subjects.countDocuments({ departmentId: id }).exec();
     if (used > 0) {
       throw new ConflictException(
-        `Cannot delete: ${used} syllabus subject(s) still use this department`,
+        `Cannot delete: ${used} course(s) still use this department`,
       );
     }
     const res = await this.departments.deleteOne({ slug: id }).exec();
@@ -293,7 +363,7 @@ export class StructureService {
     const used = await this.subjects.countDocuments({ yearId: id }).exec();
     if (used > 0) {
       throw new ConflictException(
-        `Cannot delete: ${used} syllabus subject(s) still use this year`,
+        `Cannot delete: ${used} course(s) still use this year`,
       );
     }
     const res = await this.years.deleteOne({ slug: id }).exec();
@@ -340,8 +410,22 @@ export class StructureService {
     return { deleted: true };
   }
 
+  async removeSharedCourseDepartments() {
+    await this.departments
+      .deleteMany({
+        $or: [
+          { slug: { $in: [...SHARED_COURSE_PLACEHOLDER_IDS] } },
+          { name: { $regex: /^compulsory course/i } },
+        ],
+      })
+      .exec();
+  }
+
   async ensureDepartment(slug: string, name?: string) {
     const id = assertSlug(slug, 'Department');
+    if (isSharedCoursePlaceholder(id) || isCompulsoryCourseFolder(name ?? '')) {
+      return;
+    }
     await this.departments.updateOne(
       { slug: id },
       {

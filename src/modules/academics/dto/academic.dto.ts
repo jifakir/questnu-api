@@ -217,6 +217,20 @@ export class SubjectOutlineDto {
   clos?: string[];
 }
 
+export class LinkAcademicCourseDto {
+  @IsString()
+  @Matches(ACADEMIC_SLUG, SLUG)
+  yearId: string;
+
+  @IsArray()
+  @IsString({ each: true })
+  departmentIds: string[];
+
+  @IsOptional()
+  @IsEnum(AcademicDraftStatus)
+  status?: AcademicDraftStatus;
+}
+
 export class CreateSubjectDto {
   @IsString()
   @Matches(ACADEMIC_SLUG, SLUG)
@@ -345,6 +359,97 @@ export class UpdateSubjectDto {
   @MaxLength(40)
   code?: string;
 
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  @MaxLength(300)
+  title?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(300)
+  titleBn?: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(0)
+  @Max(1000)
+  marks?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(0)
+  @Max(40)
+  credits?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(0)
+  @Max(2000)
+  classHours?: number | null;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(80)
+  examDuration?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(80)
+  orientation?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(16000)
+  description?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(16000)
+  introduction?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  objectives?: string[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SubjectOutcomeDto)
+  outcomes?: SubjectOutcomeDto[];
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  prescribedTexts?: string[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SubjectOutlineDto)
+  outline?: SubjectOutlineDto[];
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(16000)
+  labDetails?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  books?: string[];
+
+  @IsOptional()
+  @IsEnum(AcademicDraftStatus)
+  status?: AcademicDraftStatus;
+}
+
+/** Shared course document update (by code). */
+export class UpdateAcademicCourseDto {
   @IsOptional()
   @IsString()
   @MinLength(1)

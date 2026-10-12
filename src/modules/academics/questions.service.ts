@@ -48,7 +48,7 @@ export class QuestionsService {
       .findOne({ slug: assertSlug(dto.subjectSlug) })
       .lean()
       .exec();
-    if (!subject) throw new NotFoundException('Subject not found');
+    if (!subject) throw new NotFoundException('Course not found');
     this.assertOptions(dto.type, dto.options, dto.correctOptionId);
     const slug = dto.slug
       ? assertSlug(dto.slug)

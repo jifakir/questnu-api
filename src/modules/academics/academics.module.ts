@@ -9,8 +9,11 @@ import {
 import { College, CollegeSchema } from './schemas/college.schema';
 import { Department, DepartmentSchema } from './schemas/department.schema';
 import { Question, QuestionSchema } from './schemas/question.schema';
+import { Course, CourseSchema } from './schemas/course.schema';
+import { CourseLink, CourseLinkSchema } from './schemas/course-link.schema';
 import { Subject, SubjectSchema } from './schemas/subject.schema';
 import { CatalogSeedService } from './seed/catalog-seed.service';
+import { CoursesService } from './courses.service';
 import { StructureService } from './structure.service';
 import { SubjectsService } from './subjects.service';
 
@@ -21,11 +24,13 @@ import { SubjectsService } from './subjects.service';
       { name: Department.name, schema: DepartmentSchema },
       { name: AcademicYear.name, schema: AcademicYearSchema },
       { name: Subject.name, schema: SubjectSchema },
+      { name: Course.name, schema: CourseSchema },
+      { name: CourseLink.name, schema: CourseLinkSchema },
       { name: Question.name, schema: QuestionSchema },
     ]),
   ],
   controllers: [AcademicsController],
-  providers: [StructureService, SubjectsService, QuestionsService, CatalogSeedService],
-  exports: [StructureService, SubjectsService, QuestionsService, CatalogSeedService],
+  providers: [StructureService, SubjectsService, QuestionsService, CoursesService, CatalogSeedService],
+  exports: [StructureService, SubjectsService, QuestionsService, CoursesService, CatalogSeedService],
 })
 export class AcademicsModule {}
