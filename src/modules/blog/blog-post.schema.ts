@@ -49,6 +49,10 @@ export class BlogPost {
 
   @Prop({ type: BlogLocaleContentSchema }) en?: BlogLocaleContent;
 
+  /** Byline. Unset means the site shows "QuestNU Academic Team". */
+  @Prop({ type: Types.ObjectId, ref: 'BlogAuthor', index: true })
+  author?: Types.ObjectId;
+
   @Prop({ type: Types.ObjectId, ref: 'User' }) createdBy?: Types.ObjectId;
 
   createdAt?: Date;

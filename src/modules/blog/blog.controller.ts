@@ -25,6 +25,11 @@ import {
 import { UserRole } from '../../users/user.schema';
 import { BlogLocale } from './blog-post.schema';
 import { CreateBlogPostDto, UpdateBlogPostDto } from './dto/blog-post.dto';
+import {
+  CreateBlogAuthorDto,
+  UpdateBlogAuthorDto,
+} from './dto/blog-author.dto';
+import { BlogAuthorsService } from './blog-authors.service';
 import { BlogService } from './blog.service';
 
 function toLocale(value?: string): BlogLocale {
@@ -59,7 +64,30 @@ export class BlogController {
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles(UserRole.Admin)
 export class AdminBlogController {
-  constructor(private readonly service: BlogService) {}
+  constructor(
+    private readonly service: BlogService,
+    private readonly authors: BlogAuthorsService,
+  ) {}
+
+  @Get('authors')
+  listAuthors() {
+    return this.authors.listAll();
+  }
+
+  @Post('authors')
+  createAuthor(@Body() dto: CreateBlogAuthorDto) {
+    return this.authors.create(dto);
+  }
+
+  @Patch('authors/:id')
+  updateAuthor(@Param('id') id: string, @Body() dto: UpdateBlogAuthorDto) {
+    return this.authors.update(id, dto);
+  }
+
+  @Delete('authors/:id')
+  removeAuthor(@Param('id') id: string) {
+    return this.authors.remove(id);
+  }
 
   @Get('posts')
   list() {

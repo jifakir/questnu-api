@@ -26,6 +26,8 @@ import {
   BlogPostStatus,
 } from './blog-post.schema';
 import { BlogRevalidatorService } from './blog-revalidator.service';
+import { BlogAuthorDocument } from './blog-author.schema';
+import { BlogAuthorsService } from './blog-authors.service';
 
 /** SVG is left out on purpose: it can carry scripts. */
 const IMAGE_EXT_BY_TYPE: Record<string, string> = {
@@ -47,6 +49,7 @@ export class BlogService {
     @InjectModel(BlogPost.name) private readonly model: Model<BlogPost>,
     private readonly config: ConfigService,
     private readonly revalidator: BlogRevalidatorService,
+    private readonly authors: BlogAuthorsService,
   ) {}
 
   // --- public ---
@@ -59,15 +62,18 @@ export class BlogService {
     const rows = await this.model
       .find(filter)
       .sort({ publishedAt: -1 })
-      .limit(Math.min(Math.max(limit, 1), 200));
+      .limit(Math.min(Math.max(limit, 1), 200))
+      .populate('author');
     return rows.map((p) => this.toPublicJson(p, locale, false));
   }
 
   async getPublished(slug: string, locale: BlogLocale) {
-    const doc = await this.model.findOne({
-      slug: slug.toLowerCase(),
-      status: BlogPostStatus.Published,
-    });
+    const doc = await this.model
+      .findOne({
+        slug: slug.toLowerCase(),
+        status: BlogPostStatus.Published,
+      })
+      .populate('author');
     if (!doc || (locale === 'en' && !doc.en?.title)) {
       throw new NotFoundException('Post not found');
     }
@@ -102,6 +108,9 @@ export class BlogService {
   async create(dto: CreateBlogPostDto, userId?: string) {
     const slug = dto.slug ?? this.slugFromTitle(dto.en?.title);
     const publish = dto.publish === true;
+    const author = dto.authorId
+      ? await this.authors.assertExists(dto.authorId)
+      : undefined;
     let doc: BlogPostDocument;
     try {
       doc = await this.model.create({
@@ -109,6 +118,7 @@ export class BlogService {
         bn: this.cleanContent(dto.bn),
         en: dto.en ? this.cleanContent(dto.en) : undefined,
         coverImage: dto.coverImage || undefined,
+        author,
         status: publish ? BlogPostStatus.Published : BlogPostStatus.Draft,
         publishedAt: publish ? new Date() : undefined,
         createdBy:
@@ -131,6 +141,11 @@ export class BlogService {
     else if (dto.en) doc.en = this.cleanContent(dto.en);
     if (dto.coverImage !== undefined) {
       doc.coverImage = dto.coverImage || undefined;
+    }
+    if (dto.authorId !== undefined) {
+      doc.author = dto.authorId
+        ? await this.authors.assertExists(dto.authorId)
+        : undefined;
     }
     if (dto.publish === true) this.markPublished(doc);
     try {
@@ -258,6 +273,10 @@ export class BlogService {
       updatedAt: doc.updatedAt?.toISOString() ?? null,
       readingMinutes: this.readingMinutes(c.body),
       locales: this.locales(doc),
+      // Populated by the public queries above.
+      author: this.authors.toPublic(
+        doc.author as unknown as BlogAuthorDocument | undefined,
+      ),
       ...(withBody ? { body: c.body } : {}),
     };
   }
@@ -280,6 +299,7 @@ export class BlogService {
       status: doc.status,
       publishedAt: doc.publishedAt?.toISOString() ?? null,
       coverImage: doc.coverImage ?? null,
+      authorId: doc.author ? String(doc.author) : null,
       bn: content(doc.bn),
       en: content(doc.en),
       createdAt: doc.createdAt?.toISOString() ?? null,

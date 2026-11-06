@@ -4,6 +4,7 @@ import {
   ArrayMaxSize,
   IsArray,
   IsBoolean,
+  IsMongoId,
   IsObject,
   IsOptional,
   IsString,
@@ -62,6 +63,12 @@ export class CreateBlogPostDto {
   @IsString()
   @Matches(BLOG_IMAGE_FILE)
   coverImage?: string | null;
+
+  /** Author profile id from /admin/blog/authors. Null removes the byline. */
+  @IsOptional()
+  @ValidateIf((_, v) => v !== null)
+  @IsMongoId()
+  authorId?: string | null;
 
   /** Publish immediately (on create or update). */
   @IsOptional() @IsBoolean() publish?: boolean;
