@@ -8,7 +8,11 @@ import {
   SHARED_COURSE_PLACEHOLDER_IDS,
   syllabusTags,
 } from './academic.util';
-import { Course, CourseDocument } from './schemas/course.schema';
+import {
+  ACADEMIC_COURSE_MODEL,
+  Course,
+  CourseDocument,
+} from './schemas/course.schema';
 import { CourseLink, CourseLinkDocument } from './schemas/course-link.schema';
 import {
   Subject,
@@ -53,7 +57,7 @@ export type CourseSource = {
 @Injectable()
 export class CoursesService {
   constructor(
-    @InjectModel(Course.name)
+    @InjectModel(ACADEMIC_COURSE_MODEL)
     private readonly courses: Model<CourseDocument>,
     @InjectModel(CourseLink.name)
     private readonly links: Model<CourseLinkDocument>,

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from '../../users/user.schema';
-import { Course, CourseSchema } from '../academics/schemas/course.schema';
+import { ACADEMIC_COURSE_MODEL, CourseSchema } from '../academics/schemas/course.schema';
 import { CgpaController } from './cgpa.controller';
 import { CgpaService } from './cgpa.service';
 import {
@@ -19,7 +19,7 @@ import {
       { name: StudentCourseGrade.name, schema: StudentCourseGradeSchema },
       { name: StudentYearCgpa.name, schema: StudentYearCgpaSchema },
       { name: User.name, schema: UserSchema },
-      { name: Course.name, schema: CourseSchema },
+      { name: ACADEMIC_COURSE_MODEL, schema: CourseSchema },
     ]),
   ],
   controllers: [CgpaController],
