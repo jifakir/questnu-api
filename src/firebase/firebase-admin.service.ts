@@ -62,5 +62,24 @@ export class FirebaseAdminService {
     this.initIfNeeded();
     return admin.auth().verifyIdToken(idToken);
   }
+
+  /** Sends a push notification to every device subscribed to `topic`. Returns the FCM message id. */
+  async sendToTopic(
+    topic: string,
+    notification: { title: string; body: string },
+    data: Record<string, string> = {},
+  ): Promise<string> {
+    this.initIfNeeded();
+    return admin.messaging().send({
+      topic,
+      notification,
+      data,
+      android: {
+        priority: 'high',
+        notification: { channelId: 'questnu_notices', sound: 'default' },
+      },
+      apns: { payload: { aps: { sound: 'default' } } },
+    });
+  }
 }
 

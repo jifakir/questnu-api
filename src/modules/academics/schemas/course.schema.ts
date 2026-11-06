@@ -72,5 +72,11 @@ export class Course {
   tags: string[];
 }
 
+/**
+ * The LMS module also has a class named `Course`, so `Course.name` would make
+ * both share one Mongoose model. Register and inject this one by its own name.
+ */
+export const ACADEMIC_COURSE_MODEL = 'AcademicCourse';
+
 export const CourseSchema = SchemaFactory.createForClass(Course);
 CourseSchema.index({ title: 1 });

@@ -9,7 +9,7 @@ import {
 import { College, CollegeSchema } from './schemas/college.schema';
 import { Department, DepartmentSchema } from './schemas/department.schema';
 import { Question, QuestionSchema } from './schemas/question.schema';
-import { Course, CourseSchema } from './schemas/course.schema';
+import { ACADEMIC_COURSE_MODEL, CourseSchema } from './schemas/course.schema';
 import { CourseLink, CourseLinkSchema } from './schemas/course-link.schema';
 import { Subject, SubjectSchema } from './schemas/subject.schema';
 import { CatalogSeedService } from './seed/catalog-seed.service';
@@ -24,7 +24,7 @@ import { SubjectsService } from './subjects.service';
       { name: Department.name, schema: DepartmentSchema },
       { name: AcademicYear.name, schema: AcademicYearSchema },
       { name: Subject.name, schema: SubjectSchema },
-      { name: Course.name, schema: CourseSchema },
+      { name: ACADEMIC_COURSE_MODEL, schema: CourseSchema },
       { name: CourseLink.name, schema: CourseLinkSchema },
       { name: Question.name, schema: QuestionSchema },
     ]),

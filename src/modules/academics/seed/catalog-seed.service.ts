@@ -280,13 +280,13 @@ export class CatalogSeedService implements OnModuleInit {
         if (!subject.isDirectory()) continue;
         const dir = path.join(root, year.name, subject.name);
         const names = await fs.readdir(dir);
-        const jsonName = names.find((name) => name.endsWith('.json'));
-        if (!jsonName) continue;
-        const text = await fs.readFile(path.join(dir, jsonName), 'utf8');
-        out.push({
-          folderName: subject.name,
-          raw: JSON.parse(text) as unknown,
-        });
+        for (const jsonName of names.filter((name) => name.endsWith('.json')).sort()) {
+          const text = await fs.readFile(path.join(dir, jsonName), 'utf8');
+          out.push({
+            folderName: subject.name,
+            raw: JSON.parse(text) as unknown,
+          });
+        }
       }
     }
     return out;

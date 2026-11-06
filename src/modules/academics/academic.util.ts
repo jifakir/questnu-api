@@ -75,6 +75,8 @@ export const DEPARTMENT_ALIASES: Record<string, string> = {
   islamic_history_and_culture: 'islamic_history_culture',
   'library-and-information-science': 'library_science',
   library_and_information_science: 'library_science',
+  'biochemistry-and-molecular-biology': 'biochemistry',
+  biochemistry_and_molecular_biology: 'biochemistry',
 };
 
 /**

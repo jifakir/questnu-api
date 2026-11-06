@@ -9,6 +9,7 @@ import { LmsModule } from './modules/lms/lms.module';
 import { ExamEvaluationModule } from './modules/exam-evaluation/exam-evaluation.module';
 import { AcademicsModule } from './modules/academics/academics.module';
 import { CgpaModule } from './modules/cgpa/cgpa.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { CgpaModule } from './modules/cgpa/cgpa.module';
     ExamEvaluationModule,
     AcademicsModule,
     CgpaModule,
+    NotificationsModule,
   ],
 })
 export class AppModule {}

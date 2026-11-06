@@ -1,7 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Course, CourseDocument } from '../academics/schemas/course.schema';
+import {
+  ACADEMIC_COURSE_MODEL,
+  Course,
+  CourseDocument,
+} from '../academics/schemas/course.schema';
 import { User, UserDocument } from '../../users/user.schema';
 import {
   StudentCourseGrade,
@@ -25,7 +29,7 @@ export class CgpaService {
     private readonly yearModel: Model<StudentYearCgpaDocument>,
     @InjectModel(User.name)
     private readonly userModel: Model<UserDocument>,
-    @InjectModel(Course.name)
+    @InjectModel(ACADEMIC_COURSE_MODEL)
     private readonly courseModel: Model<CourseDocument>,
   ) {}
 
