@@ -29,7 +29,9 @@ export class FirebaseAdminService {
     }
 
     const projectId = this.config.get<string>('FIREBASE_PROJECT_ID')?.trim();
-    const clientEmail = this.config.get<string>('FIREBASE_CLIENT_EMAIL')?.trim();
+    const clientEmail = this.config
+      .get<string>('FIREBASE_CLIENT_EMAIL')
+      ?.trim();
     const privateKeyRaw = this.config.get<string>('FIREBASE_PRIVATE_KEY');
     const privateKey = privateKeyRaw
       ? normalizeFirebasePrivateKey(privateKeyRaw)
@@ -81,5 +83,43 @@ export class FirebaseAdminService {
       apns: { payload: { aps: { sound: 'default' } } },
     });
   }
-}
 
+  /**
+   * Sends the same push to each topic. Returns the first message id; throws
+   * if every topic failed, and logs topics that failed when others worked.
+   */
+  async sendToTopics(
+    topics: string[],
+    notification: { title: string; body: string },
+    data: Record<string, string> = {},
+  ): Promise<string> {
+    if (topics.length === 1) {
+      return this.sendToTopic(topics[0], notification, data);
+    }
+    this.initIfNeeded();
+    const messages: admin.messaging.Message[] = topics.map((topic) => ({
+      topic,
+      notification,
+      data,
+      android: {
+        priority: 'high',
+        notification: { channelId: 'questnu_notices', sound: 'default' },
+      },
+      apns: { payload: { aps: { sound: 'default' } } },
+    }));
+    const ids: string[] = [];
+    const errors: string[] = [];
+    for (let i = 0; i < messages.length; i += 500) {
+      const res = await admin.messaging().sendEach(messages.slice(i, i + 500));
+      res.responses.forEach((r, j) => {
+        if (r.success && r.messageId) ids.push(r.messageId);
+        else errors.push(`${topics[i + j]}: ${r.error?.message ?? 'failed'}`);
+      });
+    }
+    if (ids.length === 0) throw new Error(errors.join('; '));
+    if (errors.length > 0) {
+      this.logger.warn(`Push failed for some topics: ${errors.join('; ')}`);
+    }
+    return ids[0];
+  }
+}
