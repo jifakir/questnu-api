@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -16,8 +17,14 @@ import {
   type JwtPayloadUser,
 } from '../../auth/decorators/current-user.decorator';
 import { UserRole } from '../../users/user.schema';
-import { CreateNotificationDto } from './dto/notification.dto';
-import { NotificationsService } from './notifications.service';
+import {
+  CreateNotificationDto,
+  UpdateNotificationDto,
+} from './dto/notification.dto';
+import {
+  NotificationsService,
+  type AdminNotificationQuery,
+} from './notifications.service';
 
 /** Published notifications, read by the mobile app (no sign-in needed). */
 @Controller('notifications')
@@ -25,8 +32,23 @@ export class NotificationsController {
   constructor(private readonly service: NotificationsService) {}
 
   @Get()
-  list(@Query('limit') limit?: string) {
-    return this.service.listPublished(Number(limit) || 50);
+  list(
+    @Query('limit') limit?: string,
+    @Query('category') category?: string,
+    @Query('year') year?: string,
+    @Query('department') department?: string,
+  ) {
+    return this.service.listPublished(
+      Number(limit) || 50,
+      category,
+      year,
+      department,
+    );
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.service.getPublished(id);
   }
 }
 
@@ -36,9 +58,10 @@ export class NotificationsController {
 export class AdminNotificationsController {
   constructor(private readonly service: NotificationsService) {}
 
+  /** `?page=1&limit=20&status=draft|published&category=general|nu&q=text` */
   @Get()
-  list() {
-    return this.service.listAll();
+  list(@Query() query: AdminNotificationQuery) {
+    return this.service.listAll(query);
   }
 
   @Post()
@@ -47,6 +70,12 @@ export class AdminNotificationsController {
     @Body() dto: CreateNotificationDto,
   ) {
     return this.service.create(dto, user.id);
+  }
+
+  /** Edits a notification. If it is published, the push is sent again. */
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() dto: UpdateNotificationDto) {
+    return this.service.update(id, dto);
   }
 
   @Post(':id/publish')
