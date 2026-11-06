@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BlogAuthor, BlogAuthorSchema } from './blog-author.schema';
+import { BlogPartner, BlogPartnerSchema } from './blog-partner.schema';
+import { BlogEllcService } from './blog-ellc.service';
 import { BlogPost, BlogPostSchema } from './blog-post.schema';
 import { AdminBlogController, BlogController } from './blog.controller';
 import { BlogAuthorsService } from './blog-authors.service';
@@ -12,9 +14,15 @@ import { BlogService } from './blog.service';
     MongooseModule.forFeature([
       { name: BlogPost.name, schema: BlogPostSchema },
       { name: BlogAuthor.name, schema: BlogAuthorSchema },
+      { name: BlogPartner.name, schema: BlogPartnerSchema },
     ]),
   ],
   controllers: [BlogController, AdminBlogController],
-  providers: [BlogService, BlogAuthorsService, BlogRevalidatorService],
+  providers: [
+    BlogService,
+    BlogAuthorsService,
+    BlogEllcService,
+    BlogRevalidatorService,
+  ],
 })
 export class BlogModule {}

@@ -1,5 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import {
+  IsBoolean,
   IsOptional,
   IsString,
   Matches,
@@ -20,6 +21,9 @@ export class CreateBlogAuthorDto {
   @IsString()
   @Matches(BLOG_IMAGE_FILE)
   avatar?: string | null;
+
+  /** True when the author writes for ELLC (gets the ELLC badge and card). */
+  @IsOptional() @IsBoolean() ellc?: boolean;
 }
 
 export class UpdateBlogAuthorDto extends PartialType(CreateBlogAuthorDto) {}

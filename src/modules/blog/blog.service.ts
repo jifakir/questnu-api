@@ -28,6 +28,8 @@ import {
 import { BlogRevalidatorService } from './blog-revalidator.service';
 import { BlogAuthorDocument } from './blog-author.schema';
 import { BlogAuthorsService } from './blog-authors.service';
+import { BlogAuthor } from './blog-author.schema';
+import { BlogEllcService } from './blog-ellc.service';
 
 /** SVG is left out on purpose: it can carry scripts. */
 const IMAGE_EXT_BY_TYPE: Record<string, string> = {
@@ -43,6 +45,8 @@ const IMAGE_TYPE_BY_EXT: Record<string, string> = {
   '.gif': 'image/gif',
 };
 
+const AUTHOR_WITH_PARTNER = { path: 'author', populate: { path: 'partner' } };
+
 @Injectable()
 export class BlogService {
   constructor(
@@ -50,6 +54,9 @@ export class BlogService {
     private readonly config: ConfigService,
     private readonly revalidator: BlogRevalidatorService,
     private readonly authors: BlogAuthorsService,
+    private readonly ellc: BlogEllcService,
+    @InjectModel(BlogAuthor.name)
+    private readonly authorModel: Model<BlogAuthor>,
   ) {}
 
   // --- public ---
@@ -63,7 +70,7 @@ export class BlogService {
       .find(filter)
       .sort({ publishedAt: -1 })
       .limit(Math.min(Math.max(limit, 1), 200))
-      .populate('author');
+      .populate(AUTHOR_WITH_PARTNER);
     return rows.map((p) => this.toPublicJson(p, locale, false));
   }
 
@@ -73,11 +80,35 @@ export class BlogService {
         slug: slug.toLowerCase(),
         status: BlogPostStatus.Published,
       })
-      .populate('author');
+      .populate(AUTHOR_WITH_PARTNER);
     if (!doc || (locale === 'en' && !doc.en?.title)) {
       throw new NotFoundException('Post not found');
     }
     return this.toPublicJson(doc, locale, true);
+  }
+
+  /** ELLC hub: the profile, its writers and their published posts in this locale. */
+  async getEllcPage(locale: BlogLocale) {
+    const partner = await this.ellc.get();
+    const authors = await this.authorModel
+      .find({ partner: partner._id })
+      .sort({ name: 1 })
+      .populate('partner');
+    const filter: Record<string, unknown> = {
+      status: BlogPostStatus.Published,
+      author: { $in: authors.map((a) => a._id) },
+    };
+    if (locale === 'en') filter['en.title'] = { $exists: true };
+    const posts = await this.model
+      .find(filter)
+      .sort({ publishedAt: -1 })
+      .limit(100)
+      .populate(AUTHOR_WITH_PARTNER);
+    return {
+      partner: this.ellc.toPublic(partner),
+      authors: authors.map((a) => this.authors.toPublic(a)),
+      posts: posts.map((p) => this.toPublicJson(p, locale, false)),
+    };
   }
 
   async openImage(file: string) {

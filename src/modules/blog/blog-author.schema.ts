@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
 export type BlogAuthorDocument = HydratedDocument<BlogAuthor>;
 
@@ -12,6 +12,9 @@ export class BlogAuthor {
   @Prop({ trim: true }) bio?: string;
   /** File name under UPLOAD_DIR/blog, served at GET /api/blog/images/:file. */
   @Prop({ trim: true }) avatar?: string;
+  /** Organisation the author writes for (e.g. ELLC). */
+  @Prop({ type: Types.ObjectId, ref: 'BlogPartner', index: true })
+  partner?: Types.ObjectId;
 
   createdAt?: Date;
   updatedAt?: Date;

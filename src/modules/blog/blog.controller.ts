@@ -30,6 +30,8 @@ import {
   UpdateBlogAuthorDto,
 } from './dto/blog-author.dto';
 import { BlogAuthorsService } from './blog-authors.service';
+import { UpdateEllcDto } from './dto/ellc.dto';
+import { BlogEllcService } from './blog-ellc.service';
 import { BlogService } from './blog.service';
 
 function toLocale(value?: string): BlogLocale {
@@ -40,6 +42,12 @@ function toLocale(value?: string): BlogLocale {
 @Controller('blog')
 export class BlogController {
   constructor(private readonly service: BlogService) {}
+
+  /** ELLC profile with its writers and posts, for the site's English Department hub. */
+  @Get('ellc')
+  ellcPage(@Query('locale') locale?: string) {
+    return this.service.getEllcPage(toLocale(locale));
+  }
 
   @Get('posts')
   list(@Query('locale') locale?: string, @Query('limit') limit?: string) {
@@ -67,7 +75,18 @@ export class AdminBlogController {
   constructor(
     private readonly service: BlogService,
     private readonly authors: BlogAuthorsService,
+    private readonly ellc: BlogEllcService,
   ) {}
+
+  @Get('ellc')
+  getEllc() {
+    return this.ellc.getAdmin();
+  }
+
+  @Patch('ellc')
+  updateEllc(@Body() dto: UpdateEllcDto) {
+    return this.ellc.update(dto);
+  }
 
   @Get('authors')
   listAuthors() {

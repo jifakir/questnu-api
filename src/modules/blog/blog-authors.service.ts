@@ -13,6 +13,8 @@ import {
 import { BlogAuthor, BlogAuthorDocument } from './blog-author.schema';
 import { BlogPost } from './blog-post.schema';
 import { BlogRevalidatorService } from './blog-revalidator.service';
+import { BlogPartnerDocument } from './blog-partner.schema';
+import { BlogEllcService, PublicEllc } from './blog-ellc.service';
 
 const TEXT_FIELDS = ['name', 'designation', 'bio'] as const;
 
@@ -23,6 +25,7 @@ export type PublicBlogAuthor = {
   designation: string | null;
   bio: string | null;
   avatar: string | null;
+  partner: PublicEllc | null;
 };
 
 @Injectable()
@@ -31,6 +34,7 @@ export class BlogAuthorsService {
     @InjectModel(BlogAuthor.name) private readonly model: Model<BlogAuthor>,
     @InjectModel(BlogPost.name) private readonly posts: Model<BlogPost>,
     private readonly revalidator: BlogRevalidatorService,
+    private readonly ellc: BlogEllcService,
   ) {}
 
   async listAll() {
@@ -46,7 +50,10 @@ export class BlogAuthorsService {
   }
 
   async create(dto: CreateBlogAuthorDto) {
-    const doc = await this.model.create(this.clean(dto));
+    const doc = await this.model.create({
+      ...this.clean(dto),
+      partner: dto.ellc ? await this.ellc.id() : undefined,
+    });
     return this.toAdminJson(doc, 0);
   }
 
@@ -55,6 +62,9 @@ export class BlogAuthorsService {
     const patch = this.clean(dto);
     for (const key of [...TEXT_FIELDS, 'avatar'] as const) {
       if (key in dto) doc.set(key, patch[key]);
+    }
+    if (dto.ellc !== undefined) {
+      doc.partner = dto.ellc ? await this.ellc.id() : undefined;
     }
     if (!doc.name) throw new BadRequestException('Name is required');
     await doc.save();
@@ -83,16 +93,23 @@ export class BlogAuthorsService {
     return new Types.ObjectId(id);
   }
 
+  /** Expects `partner` to be populated when the caller wants it in the output. */
   toPublic(
     author: BlogAuthorDocument | null | undefined,
   ): PublicBlogAuthor | null {
     if (!author?.name) return null;
+    const partner = author.partner as unknown as
+      | BlogPartnerDocument
+      | Types.ObjectId
+      | undefined;
     return {
       id: author.id,
       name: author.name,
       designation: author.designation || null,
       bio: author.bio || null,
       avatar: author.avatar ?? null,
+      partner:
+        partner && 'slug' in partner ? this.ellc.toPublic(partner) : null,
     };
   }
 
@@ -125,6 +142,7 @@ export class BlogAuthorsService {
       designation: doc.designation ?? null,
       bio: doc.bio ?? null,
       avatar: doc.avatar ?? null,
+      ellc: !!doc.partner,
       postCount,
       createdAt: doc.createdAt?.toISOString() ?? null,
       updatedAt: doc.updatedAt?.toISOString() ?? null,
